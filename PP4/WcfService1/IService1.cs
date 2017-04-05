@@ -41,6 +41,8 @@ namespace WcfService1
 
         [OperationContract]
         void Eliminar_Equipo(Nullable<int> id);
+        [OperationContract]
+        void Eliminar_Laboratorio(Nullable<int> id);
 
         [OperationContract]
         void Registrar_Curso(string id_curso, string cedula, string nombre, Nullable<byte> turno);
