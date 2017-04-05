@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="526aba965c5d4d9f9f52826aae8c2467" Name="Diagram1">
+        <EntityTypeShape EntityType="labsModel.curso" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="labsModel.equipo" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="labsModel.laboratorio" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="labsModel.rol" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="labsModel.solicitud" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="labsModel.usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="labsModel.FK__curso__cedula__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="labsModel.FK__solicitud__id_cu__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="labsModel.FK__laborator__id_eq__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="labsModel.FK__solicitud__id_la__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="labsModel.FK__usuario__id_rol__25869641" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

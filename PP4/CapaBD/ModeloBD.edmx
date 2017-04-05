@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="labsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="cedula" Type="varchar" MaxLength="20" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" />
+          <Property Name="turno" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="equipo">
+          <Key>
+            <PropertyRef Name="id_equipo" />
+          </Key>
+          <Property Name="id_equipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="config" Type="varchar" MaxLength="100" />
+          <Property Name="software" Type="varchar" MaxLength="200" />
+          <Property Name="sistOper" Type="varchar" MaxLength="100" />
+          <Property Name="servidores" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="laboratorio">
+          <Key>
+            <PropertyRef Name="id_lab" />
+          </Key>
+          <Property Name="id_lab" Type="int" Nullable="false" />
+          <Property Name="cantCompu" Type="tinyint" />
+          <Property Name="piso" Type="tinyint" />
+          <Property Name="aire" Type="bit" />
+          <Property Name="videoBeam" Type="bit" />
+          <Property Name="disponible" Type="bit" />
+          <Property Name="id_equipo" Type="int" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="solicitud">
+          <Key>
+            <PropertyRef Name="id_solic" />
+          </Key>
+          <Property Name="id_solic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_lab" Type="int" />
+          <Property Name="id_curso" Type="varchar" MaxLength="5" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="hora_ini" Type="time" Precision="7" />
+          <Property Name="hora_fin" Type="time" Precision="7" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido1" Type="varchar" MaxLength="50" />
+          <Property Name="apellido2" Type="varchar" MaxLength="50" />
+          <Property Name="ocupacion" Type="varchar" MaxLength="50" />
+          <Property Name="id_rol" Type="int" />
+          <Property Name="userName" Type="varchar" MaxLength="20" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__curso__cedula__2D27B809">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__laborator__id_eq__2A4B4B5E">
+          <End Role="equipo" Type="Self.equipo" Multiplicity="0..1" />
+          <End Role="laboratorio" Type="Self.laboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipo">
+              <PropertyRef Name="id_equipo" />
+            </Principal>
+            <Dependent Role="laboratorio">
+              <PropertyRef Name="id_equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__solicitud__id_cu__30F848ED">
+          <End Role="curso" Type="Self.curso" Multiplicity="0..1" />
+          <End Role="solicitud" Type="Self.solicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="solicitud">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__solicitud__id_la__300424B4">
+          <End Role="laboratorio" Type="Self.laboratorio" Multiplicity="0..1" />
+          <End Role="solicitud" Type="Self.solicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratorio">
+              <PropertyRef Name="id_lab" />
+            </Principal>
+            <Dependent Role="solicitud">
+              <PropertyRef Name="id_lab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__id_rol__25869641">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Actualizar_Curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_curso" Type="varchar" Mode="In" />
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="turno" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="Actualizar_Equipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="config" Type="varchar" Mode="In" />
+          <Parameter Name="software" Type="varchar" Mode="In" />
+          <Parameter Name="sistOper" Type="varchar" Mode="In" />
+          <Parameter Name="servidores" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Actualizar_Laboratorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="cantCompu" Type="tinyint" Mode="In" />
+          <Parameter Name="piso" Type="tinyint" Mode="In" />
+          <Parameter Name="aire" Type="bit" Mode="In" />
+          <Parameter Name="videoBeam" Type="bit" Mode="In" />
+          <Parameter Name="disponible" Type="bit" Mode="In" />
+          <Parameter Name="id_equipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Actualizar_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido1" Type="varchar" Mode="In" />
+          <Parameter Name="apellido2" Type="varchar" Mode="In" />
+          <Parameter Name="ocupacion" Type="varchar" Mode="In" />
+          <Parameter Name="contraseña" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Buscar_Curso_Cedula_Profesor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Buscar_Curso_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Buscar_Equipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Buscar_Laboratorio_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Eliminar_Curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_curso" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Eliminar_Equipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Eliminar_Laboratorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_curso" Type="varchar" Mode="In" />
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="turno" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Equipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="config" Type="varchar" Mode="In" />
+          <Parameter Name="software" Type="varchar" Mode="In" />
+          <Parameter Name="sistOper" Type="varchar" Mode="In" />
+          <Parameter Name="servidores" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Laboratorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_lab" Type="int" Mode="In" />
+          <Parameter Name="cantCompu" Type="tinyint" Mode="In" />
+          <Parameter Name="piso" Type="tinyint" Mode="In" />
+          <Parameter Name="aire" Type="bit" Mode="In" />
+          <Parameter Name="videoBeam" Type="bit" Mode="In" />
+          <Parameter Name="disponible" Type="bit" Mode="In" />
+          <Parameter Name="id_equipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Solicitud" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_lab" Type="int" Mode="In" />
+          <Parameter Name="id_curso" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+          <Parameter Name="hora_ini" Type="time" Mode="In" />
+          <Parameter Name="hora_fin" Type="time" Mode="In" />
+          <Parameter Name="activo" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Registrar_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cedula" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido1" Type="varchar" Mode="In" />
+          <Parameter Name="apellido2" Type="varchar" Mode="In" />
+          <Parameter Name="ocupacion" Type="varchar" Mode="In" />
+          <Parameter Name="id_rol" Type="int" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="contraseña" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Traer_ID_Labs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Validar_Cedula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Validar_Labs_Solicitado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Validar_Nick" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="labsModelStoreContainer">
+          <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="laboratorio" EntityType="Self.laboratorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="solicitud" EntityType="Self.solicitud" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__curso__cedula__2D27B809" Association="Self.FK__curso__cedula__2D27B809">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__laborator__id_eq__2A4B4B5E" Association="Self.FK__laborator__id_eq__2A4B4B5E">
+            <End Role="equipo" EntitySet="equipo" />
+            <End Role="laboratorio" EntitySet="laboratorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__solicitud__id_cu__30F848ED" Association="Self.FK__solicitud__id_cu__30F848ED">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="solicitud" EntitySet="solicitud" />
+          </AssociationSet>
+          <AssociationSet Name="FK__solicitud__id_la__300424B4" Association="Self.FK__solicitud__id_la__300424B4">
+            <End Role="laboratorio" EntitySet="laboratorio" />
+            <End Role="solicitud" EntitySet="solicitud" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__id_rol__25869641" Association="Self.FK__usuario__id_rol__25869641">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="labsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="turno" Type="Byte" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__curso__cedula__2D27B809" FromRole="curso" ToRole="usuario" />
+          <NavigationProperty Name="solicitud" Relationship="Self.FK__solicitud__id_cu__30F848ED" FromRole="curso" ToRole="solicitud" />
+        </EntityType>
+        <EntityType Name="equipo">
+          <Key>
+            <PropertyRef Name="id_equipo" />
+          </Key>
+          <Property Name="id_equipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="config" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="software" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="sistOper" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="servidores" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="laboratorio" Relationship="Self.FK__laborator__id_eq__2A4B4B5E" FromRole="equipo" ToRole="laboratorio" />
+        </EntityType>
+        <EntityType Name="laboratorio">
+          <Key>
+            <PropertyRef Name="id_lab" />
+          </Key>
+          <Property Name="id_lab" Type="Int32" Nullable="false" />
+          <Property Name="cantCompu" Type="Byte" />
+          <Property Name="piso" Type="Byte" />
+          <Property Name="aire" Type="Boolean" />
+          <Property Name="videoBeam" Type="Boolean" />
+          <Property Name="disponible" Type="Boolean" />
+          <Property Name="id_equipo" Type="Int32" />
+          <NavigationProperty Name="equipo" Relationship="Self.FK__laborator__id_eq__2A4B4B5E" FromRole="laboratorio" ToRole="equipo" />
+          <NavigationProperty Name="solicitud" Relationship="Self.FK__solicitud__id_la__300424B4" FromRole="laboratorio" ToRole="solicitud" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__id_rol__25869641" FromRole="rol" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="solicitud">
+          <Key>
+            <PropertyRef Name="id_solic" />
+          </Key>
+          <Property Name="id_solic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_lab" Type="Int32" />
+          <Property Name="id_curso" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="hora_ini" Type="Time" Precision="7" />
+          <Property Name="hora_fin" Type="Time" Precision="7" />
+          <Property Name="activo" Type="Boolean" />
+          <NavigationProperty Name="curso" Relationship="Self.FK__solicitud__id_cu__30F848ED" FromRole="solicitud" ToRole="curso" />
+          <NavigationProperty Name="laboratorio" Relationship="Self.FK__solicitud__id_la__300424B4" FromRole="solicitud" ToRole="laboratorio" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ocupacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_rol" Type="Int32" />
+          <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="curso" Relationship="Self.FK__curso__cedula__2D27B809" FromRole="usuario" ToRole="curso" />
+          <NavigationProperty Name="rol" Relationship="Self.FK__usuario__id_rol__25869641" FromRole="usuario" ToRole="rol" />
+        </EntityType>
+        <Association Name="FK__curso__cedula__2D27B809">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__solicitud__id_cu__30F848ED">
+          <End Role="curso" Type="Self.curso" Multiplicity="0..1" />
+          <End Role="solicitud" Type="Self.solicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="solicitud">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__laborator__id_eq__2A4B4B5E">
+          <End Role="equipo" Type="Self.equipo" Multiplicity="0..1" />
+          <End Role="laboratorio" Type="Self.laboratorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipo">
+              <PropertyRef Name="id_equipo" />
+            </Principal>
+            <Dependent Role="laboratorio">
+              <PropertyRef Name="id_equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__solicitud__id_la__300424B4">
+          <End Role="laboratorio" Type="Self.laboratorio" Multiplicity="0..1" />
+          <End Role="solicitud" Type="Self.solicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="laboratorio">
+              <PropertyRef Name="id_lab" />
+            </Principal>
+            <Dependent Role="solicitud">
+              <PropertyRef Name="id_lab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__id_rol__25869641">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="labsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="curso" EntityType="Self.curso" />
+          <EntitySet Name="equipo" EntityType="Self.equipo" />
+          <EntitySet Name="laboratorio" EntityType="Self.laboratorio" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="solicitud" EntityType="Self.solicitud" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK__curso__cedula__2D27B809" Association="Self.FK__curso__cedula__2D27B809">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__solicitud__id_cu__30F848ED" Association="Self.FK__solicitud__id_cu__30F848ED">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="solicitud" EntitySet="solicitud" />
+          </AssociationSet>
+          <AssociationSet Name="FK__laborator__id_eq__2A4B4B5E" Association="Self.FK__laborator__id_eq__2A4B4B5E">
+            <End Role="equipo" EntitySet="equipo" />
+            <End Role="laboratorio" EntitySet="laboratorio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__solicitud__id_la__300424B4" Association="Self.FK__solicitud__id_la__300424B4">
+            <End Role="laboratorio" EntitySet="laboratorio" />
+            <End Role="solicitud" EntitySet="solicitud" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__id_rol__25869641" Association="Self.FK__usuario__id_rol__25869641">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <FunctionImport Name="Actualizar_Curso">
+            <Parameter Name="id_curso" Mode="In" Type="String" />
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="turno" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="Actualizar_Equipo">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="config" Mode="In" Type="String" />
+            <Parameter Name="software" Mode="In" Type="String" />
+            <Parameter Name="sistOper" Mode="In" Type="String" />
+            <Parameter Name="servidores" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Actualizar_Laboratorio">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="cantCompu" Mode="In" Type="Byte" />
+            <Parameter Name="piso" Mode="In" Type="Byte" />
+            <Parameter Name="aire" Mode="In" Type="Boolean" />
+            <Parameter Name="videoBeam" Mode="In" Type="Boolean" />
+            <Parameter Name="disponible" Mode="In" Type="Boolean" />
+            <Parameter Name="id_equipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Actualizar_Usuario">
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido1" Mode="In" Type="String" />
+            <Parameter Name="apellido2" Mode="In" Type="String" />
+            <Parameter Name="ocupacion" Mode="In" Type="String" />
+            <Parameter Name="contraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Buscar_Curso_Cedula_Profesor" ReturnType="Collection(labsModel.Buscar_Curso_Cedula_Profesor_Result)">
+            <Parameter Name="cedula" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Buscar_Curso_ID" ReturnType="Collection(labsModel.Buscar_Curso_ID_Result)">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Buscar_Equipo" ReturnType="Collection(labsModel.Buscar_Equipo_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Buscar_Laboratorio_ID" ReturnType="Collection(labsModel.Buscar_Laboratorio_ID_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Eliminar_Curso">
+            <Parameter Name="id_curso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Eliminar_Equipo">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Eliminar_Laboratorio">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Curso">
+            <Parameter Name="id_curso" Mode="In" Type="String" />
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="turno" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Equipo">
+            <Parameter Name="config" Mode="In" Type="String" />
+            <Parameter Name="software" Mode="In" Type="String" />
+            <Parameter Name="sistOper" Mode="In" Type="String" />
+            <Parameter Name="servidores" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Laboratorio">
+            <Parameter Name="id_lab" Mode="In" Type="Int32" />
+            <Parameter Name="cantCompu" Mode="In" Type="Byte" />
+            <Parameter Name="piso" Mode="In" Type="Byte" />
+            <Parameter Name="aire" Mode="In" Type="Boolean" />
+            <Parameter Name="videoBeam" Mode="In" Type="Boolean" />
+            <Parameter Name="disponible" Mode="In" Type="Boolean" />
+            <Parameter Name="id_equipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Solicitud">
+            <Parameter Name="id_lab" Mode="In" Type="Int32" />
+            <Parameter Name="id_curso" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="hora_ini" Mode="In" Type="Time" />
+            <Parameter Name="hora_fin" Mode="In" Type="Time" />
+            <Parameter Name="activo" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar_Usuario">
+            <Parameter Name="cedula" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido1" Mode="In" Type="String" />
+            <Parameter Name="apellido2" Mode="In" Type="String" />
+            <Parameter Name="ocupacion" Mode="In" Type="String" />
+            <Parameter Name="id_rol" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="contraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Traer_ID_Labs" ReturnType="Collection(Int32)" />
+        </EntityContainer>
+        <ComplexType Name="Buscar_Curso_Cedula_Profesor_Result">
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellido1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellido2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cedula" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nombre1" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="turno" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Buscar_Curso_ID_Result">
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellido1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellido2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cedula" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nombre1" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="turno" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Buscar_Equipo_Result">
+          <Property Type="String" Name="config" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="software" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="sistOper" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="servidores" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="Buscar_Laboratorio_ID_Result">
+          <Property Type="Byte" Name="cantCompu" Nullable="true" />
+          <Property Type="Byte" Name="piso" Nullable="true" />
+          <Property Type="Boolean" Name="aire" Nullable="true" />
+          <Property Type="Boolean" Name="videoBeam" Nullable="true" />
+          <Property Type="Boolean" Name="disponible" Nullable="true" />
+          <Property Type="Int32" Name="id_equipo" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="labsModelStoreContainer" CdmEntityContainer="labsEntities">
+          <EntitySetMapping Name="curso">
+            <EntityTypeMapping TypeName="labsModel.curso">
+              <MappingFragment StoreEntitySet="curso">
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipo">
+            <EntityTypeMapping TypeName="labsModel.equipo">
+              <MappingFragment StoreEntitySet="equipo">
+                <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+                <ScalarProperty Name="config" ColumnName="config" />
+                <ScalarProperty Name="software" ColumnName="software" />
+                <ScalarProperty Name="sistOper" ColumnName="sistOper" />
+                <ScalarProperty Name="servidores" ColumnName="servidores" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="laboratorio">
+            <EntityTypeMapping TypeName="labsModel.laboratorio">
+              <MappingFragment StoreEntitySet="laboratorio">
+                <ScalarProperty Name="id_lab" ColumnName="id_lab" />
+                <ScalarProperty Name="cantCompu" ColumnName="cantCompu" />
+                <ScalarProperty Name="piso" ColumnName="piso" />
+                <ScalarProperty Name="aire" ColumnName="aire" />
+                <ScalarProperty Name="videoBeam" ColumnName="videoBeam" />
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+                <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="labsModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="solicitud">
+            <EntityTypeMapping TypeName="labsModel.solicitud">
+              <MappingFragment StoreEntitySet="solicitud">
+                <ScalarProperty Name="id_solic" ColumnName="id_solic" />
+                <ScalarProperty Name="id_lab" ColumnName="id_lab" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora_ini" ColumnName="hora_ini" />
+                <ScalarProperty Name="hora_fin" ColumnName="hora_fin" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="labsModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="ocupacion" ColumnName="ocupacion" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Actualizar_Curso" FunctionName="labsModel.Store.Actualizar_Curso" />
+          <FunctionImportMapping FunctionImportName="Actualizar_Equipo" FunctionName="labsModel.Store.Actualizar_Equipo" />
+          <FunctionImportMapping FunctionImportName="Actualizar_Laboratorio" FunctionName="labsModel.Store.Actualizar_Laboratorio" />
+          <FunctionImportMapping FunctionImportName="Actualizar_Usuario" FunctionName="labsModel.Store.Actualizar_Usuario" />
+          <FunctionImportMapping FunctionImportName="Buscar_Curso_Cedula_Profesor" FunctionName="labsModel.Store.Buscar_Curso_Cedula_Profesor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="labsModel.Buscar_Curso_Cedula_Profesor_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre1" ColumnName="nombre1" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Buscar_Curso_ID" FunctionName="labsModel.Store.Buscar_Curso_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="labsModel.Buscar_Curso_ID_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre1" ColumnName="nombre1" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Buscar_Equipo" FunctionName="labsModel.Store.Buscar_Equipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="labsModel.Buscar_Equipo_Result">
+                <ScalarProperty Name="config" ColumnName="config" />
+                <ScalarProperty Name="software" ColumnName="software" />
+                <ScalarProperty Name="sistOper" ColumnName="sistOper" />
+                <ScalarProperty Name="servidores" ColumnName="servidores" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Buscar_Laboratorio_ID" FunctionName="labsModel.Store.Buscar_Laboratorio_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="labsModel.Buscar_Laboratorio_ID_Result">
+                <ScalarProperty Name="cantCompu" ColumnName="cantCompu" />
+                <ScalarProperty Name="piso" ColumnName="piso" />
+                <ScalarProperty Name="aire" ColumnName="aire" />
+                <ScalarProperty Name="videoBeam" ColumnName="videoBeam" />
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+                <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Eliminar_Curso" FunctionName="labsModel.Store.Eliminar_Curso" />
+          <FunctionImportMapping FunctionImportName="Eliminar_Equipo" FunctionName="labsModel.Store.Eliminar_Equipo" />
+          <FunctionImportMapping FunctionImportName="Eliminar_Laboratorio" FunctionName="labsModel.Store.Eliminar_Laboratorio" />
+          <FunctionImportMapping FunctionImportName="Registrar_Curso" FunctionName="labsModel.Store.Registrar_Curso" />
+          <FunctionImportMapping FunctionImportName="Registrar_Equipo" FunctionName="labsModel.Store.Registrar_Equipo" />
+          <FunctionImportMapping FunctionImportName="Registrar_Laboratorio" FunctionName="labsModel.Store.Registrar_Laboratorio" />
+          <FunctionImportMapping FunctionImportName="Registrar_Solicitud" FunctionName="labsModel.Store.Registrar_Solicitud" />
+          <FunctionImportMapping FunctionImportName="Registrar_Usuario" FunctionName="labsModel.Store.Registrar_Usuario" />
+          <FunctionImportMapping FunctionImportName="Traer_ID_Labs" FunctionName="labsModel.Store.Traer_ID_Labs" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

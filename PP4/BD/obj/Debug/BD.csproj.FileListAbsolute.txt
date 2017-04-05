@@ -1,0 +1,3 @@
+C:\Users\artur\Desktop\Programacion 4\Proyecto\PP4\PP4\BD\obj\Debug\BD.csprojResolveAssemblyReference.cache
+C:\Users\artur\Desktop\Programacion 4\Proyecto\PP4\PP4\BD\obj\Debug\BD.Properties.Resources.resources
+C:\Users\artur\Desktop\Programacion 4\Proyecto\PP4\PP4\BD\obj\Debug\BD.csproj.GenerateResource.Cache
