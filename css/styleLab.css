@@ -1,0 +1,126 @@
+*{
+	margin:0;
+	padding: 0;
+	font-family :'Questrial', sans-serif;
+}
+body{
+	margin-bottom: 50px;
+    font-size: 1em;
+    color: #555;
+}
+
+header {
+	position: relative;
+	background-color: #04B4AE;
+	border-radius: 10px;
+} 
+
+header img{
+	float: right;
+	margin: 10px;
+}
+
+header h1 {
+	position: absolute;
+	top: 20px;
+	left: 530px;
+	text-align: center;
+}
+
+.clear{
+	clear: both;
+}
+
+.btn{
+	width: 200px;
+	background-color: #0080FF;
+	border-radius: 20px;
+	padding: 10px;
+	color: white;
+	border: 1px solid #0080FF;
+	margin:10px;
+}
+
+#piso2 h3, #piso3 h3, #piso4 h3{
+	text-align: center;
+	margin-top: 20px;
+}
+
+#content{
+	width: 950px;
+	background-color: #EFFBFB;
+}
+#pasillo h3{
+	text-align: center;
+	letter-spacing: 0.5em;
+}
+.icon{
+	margin: 20px 0 20px 0;
+	padding: 30px 15px 30px 15px;
+
+}
+.lab a,.aula a{
+	text-decoration: none;
+	color: black;
+}
+.lab,.aula {
+	display: inline;
+	text-align: center;
+	float: right;
+	width: 100px;
+	border: 2px solid #b3b3ff;
+	margin: 40px 1px 40px 1px;
+	padding: 40px;
+	background-color: #CEECF5;
+	position: relative;
+}
+#first{
+	width: 138px;
+	padding-bottom: 55px;
+}
+#fin{
+	margin-right: 20px;
+}
+.soda{
+	display: inline;
+	float: right;
+	width: 100px;
+	margin: 40px 1px 40px 1px;
+	padding: 35px;
+}
+.lab img,.aula img{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+.izq{
+	top: 0;
+	left: 0;
+}
+.dcha{
+	top:0;
+	right: 0;
+}
+
+.aula:hover{
+	display: block;
+	background-color:#A9BCF5;
+	background-image: url(add.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.lab:hover{
+	display: block;
+	background-color:#A9BCF5;
+	background-image: url(update.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+footer {
+	color: #999999;
+	font-size: 14px;
+	margin-top: 10px;
+	padding: 10px 0;
+	border-top: #999999 1px solid;
+	text-align: center;
+}
