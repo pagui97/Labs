@@ -70,6 +70,29 @@ namespace BD
             cnx.cerrarConexion();
 
         }
+
+        public Equipo Buscar_Equipo(int id_equipo)
+        {
+            Conexion cnx = new Conexion();
+            cnx.abrirConexion();
+            Equipo nuevo = new Equipo();
+            SqlCommand cmd = new SqlCommand("Buscar_Equipo");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            nuevo.config = reader["config"].ToString();
+            nuevo.id_equipo = int.Parse(reader["id_equipo"].ToString());
+            nuevo.servidores = reader["servidores"].ToString();
+            nuevo.software = reader["software"].ToString();
+            nuevo.sistOper = reader["sistOper"].ToString();
+            cnx.cerrarConexion();
+            cmd.Dispose();
+            reader.Dispose();
+            return nuevo;
+
+
+        }
     }
 
     

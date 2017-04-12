@@ -69,5 +69,40 @@ namespace BD
             cnx.cerrarConexion();
 
         }
+        public void Buscar_Laboratorio(int id)
+        {
+            Conexion cnx = new Conexion();
+            cnx.abrirConexion();
+            Laboratorio nuevo = new Laboratorio();
+            SqlCommand cmd = new SqlCommand("Buscar_Laboratorio");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue(@"id_lab", id);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            nuevo.id_lab = int.Parse(reader["id_lab"].ToString());
+            nuevo.cantCompu = int.Parse(reader["cantCompu"].ToString());
+            nuevo.piso = int.Parse(reader["piso"].ToString());
+            nuevo.aire = Convert.ToBoolean(reader["aire"].ToString());
+            nuevo.videoBeam = Convert.ToBoolean(reader["videoBeam"].ToString());
+            nuevo.disponible = Convert.ToBoolean(reader["disponible"].ToString());
+            nuevo.id_equipo = Convert.ToInt32(reader["id_equipo"].ToString());
+        }
+
+        public List<string> Traer_ID_Labs()
+        {
+            List<string> ids = new List<string>();
+            Conexion cnx = new Conexion();
+            cnx.abrirConexion();
+            Laboratorio nuevo = new Laboratorio();
+            SqlCommand cmd = new SqlCommand("Traer_ID_Labs");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ids.Add(reader["id_lab"].ToString());
+            }
+            return ids;
+        }
     }
 }
