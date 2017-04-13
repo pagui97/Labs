@@ -276,6 +276,58 @@ namespace WcfService1
                 throw;
             }
         }
+        
+         public List<Reportes> Reporte_Solicitud_Laboratorio_General()
+        {
+            try
+            {
+                return Reportes.Reporte_Solicitud_Laboratorio_General();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Reportes> Reporte_Solicitud_Cedula(string cedula)
+        {
+            try
+            {
+                return Reportes.Reporte_Solicitud_Cedula(cedula);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Reportes> Reporte_solicitud_Fecha(DateTime fecha)
+        {
+            try
+            {
+                return Reportes.Reporte_solicitud_Fecha(fecha);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Reportes> Reporte_Solicitud_ID_Lab(int id_lab)
+        {
+            try
+            {
+                return Reportes.Reporte_Solicitud_ID_Lab(id_lab);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
 
 
