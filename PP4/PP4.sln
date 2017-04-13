@@ -7,29 +7,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PP4", "..\", "{3E5073D1-2A7
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_50059"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\GitHub\PP4\"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\Labs\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50059\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_50059"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\GitHub\PP4\"
+		Release.AspNetCompiler.PhysicalPath = "..\..\Labs\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50059\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50059"
-		SlnRelativePath = "..\..\..\GitHub\PP4\"
+		SlnRelativePath = "..\..\Labs\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService1", "WcfService1\WcfService1.csproj", "{CDB148EC-91BB-4F8F-8A91-B974D9DE84E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD", "BD\BD.csproj", "{5D441CA4-64BA-41E5-9329-5EE671101A78}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaBD", "CapaBD\CapaBD.csproj", "{2BDB4501-E667-47A2-9279-2BB8DC21A7BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +47,6 @@ Global
 		{5D441CA4-64BA-41E5-9329-5EE671101A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D441CA4-64BA-41E5-9329-5EE671101A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D441CA4-64BA-41E5-9329-5EE671101A78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BDB4501-E667-47A2-9279-2BB8DC21A7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BDB4501-E667-47A2-9279-2BB8DC21A7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BDB4501-E667-47A2-9279-2BB8DC21A7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BDB4501-E667-47A2-9279-2BB8DC21A7BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

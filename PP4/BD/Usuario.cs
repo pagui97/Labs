@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BD
 {
-    class Usuario
+    public class Usuario
     {
         #region atributos
-        public int cedula { get; set; }
+        public string cedula { get; set; }
         public string nombre { get; set; }
         public string apellido1 { get; set; }
         public string apellido2 { get; set; }
@@ -21,7 +21,7 @@ namespace BD
         #endregion
 
         #region metodos
-        public static void Registrar_Usuario(int cedula, string nombre, string apellido1, string apellido2, string ocupacion, int id_rol, string username, string contrasena)
+        public static void Registrar_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, int id_rol, string username, string contrasena)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -49,7 +49,7 @@ namespace BD
 
         }
 
-        public static void Actualiza_Usuario(int cedula, string nombre, string apellido1, string apellido2, string ocupacion, int id_rol, string username, string contrasena)
+        public static void Actualiza_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, string contrasena)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -72,9 +72,31 @@ namespace BD
             cnx.cerrarConexion();
 
         }
+            
+        public static  byte Validar_Cedula(int id)
+        {
+            Conexion cnx = new Conexion();
+            cnx.abrirConexion();
+            SqlCommand cmd = new SqlCommand("Execute dbo.Validar_Cedula");
+            cmd.Parameters.AddWithValue(@"id", id);
+            byte resultado = (Byte)cmd.ExecuteScalar();
+            cnx.cerrarConexion();
+            return resultado;
+            
+        }
+        public static byte Validar_Nick(string username)
+        {
+            Conexion cnx = new Conexion();
+            cnx.abrirConexion();
+            SqlCommand cmd = new SqlCommand("Execute dbo.Validar_Nick");
+            cmd.Parameters.AddWithValue(@"username", username);
+            byte resultado = (Byte)cmd.ExecuteScalar();
+            cnx.cerrarConexion();
+            return resultado;
 
-     
+        }
 
-        #endregion 
+
+        #endregion
     }
 }

@@ -71,7 +71,7 @@ namespace BD
 
         }
 
-        public Equipo Buscar_Equipo(int id_equipo)
+        public static Equipo Buscar_Equipo(int id_equipo)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();

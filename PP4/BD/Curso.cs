@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BD
 {
-    class Curso
+    public  class Curso
     {
         public string id_cruso { get; set; }
         public string cedula { get; set; }
@@ -68,7 +68,7 @@ namespace BD
             cnx.cerrarConexion();
         }
 
-        public Curso Buscar_Curso(string id)
+        public static Curso Buscar_Curso(string id)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -90,7 +90,7 @@ namespace BD
 
         }
 
-        public List<Curso> Buscar_Curso_Cedula_Profesor(string id)
+        public static List<Curso> Buscar_Curso_Cedula_Profesor(string id)
         {
             List<Curso> lista = new List<Curso>();
             Conexion cnx = new Conexion();

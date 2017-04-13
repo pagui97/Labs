@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using BD;
 
 namespace WcfService1
 {
@@ -14,15 +15,15 @@ namespace WcfService1
     {
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Actualizar_Curso(string id_curso, string cedula, string nombre, Nullable<byte> turno);
+        void Actualizar_Curso(string id_curso, string cedula, string nombre, int turno);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Actualizar_Equipo(Nullable<int> id, string config, string software, string sistOper, string servidores);
+        void Actualizar_Equipo(int id, string config, string software, string sistOper, string servidores);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Actualizar_Laboratorio(Nullable<int> id, Nullable<byte> cantCompu, Nullable<byte> piso, Nullable<bool> aire, Nullable<bool> videoBeam, Nullable<bool> disponible, Nullable<int> id_equipo);
+        void Actualizar_Laboratorio(int id, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible, int id_equipo);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
@@ -30,19 +31,19 @@ namespace WcfService1
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Buscar_Curso_Cedula_Profesor(string cedula);
+        List<Curso> Buscar_Curso_Cedula_Profesor(string cedula);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Buscar_Curso_ID(string id);
+        Curso Buscar_Curso_ID(string id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Buscar_Equipo(Nullable<int> id);
+        Equipo Buscar_Equipo(int id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Buscar_Laboratorio_ID(Nullable<int> id);
+        Laboratorio Buscar_Laboratorio_ID(int id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
@@ -50,35 +51,45 @@ namespace WcfService1
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Eliminar_Equipo(Nullable<int> id);
+        void Eliminar_Equipo(int id);
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Eliminar_Laboratorio(Nullable<int> id);
+        void Eliminar_Laboratorio(int id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Registrar_Curso(string id_curso, string cedula, string nombre, Nullable<byte> turno);
+        void Registrar_Curso(string id_curso, string cedula, string nombre, int turno);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Registrar_Equipo(string config, string software, string sistOper, string servidores);
+        void Registrar_Equipo(int id_equipo,string config, string software, string sistOper, string servidores);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Registrar_Laboratorio(Nullable<int> id_lab, Nullable<byte> cantCompu, Nullable<byte> piso, Nullable<bool> aire, Nullable<bool> videoBeam, Nullable<bool> disponible, Nullable<int> id_equipo);
+        void Registrar_Laboratorio(int id_lab,int cantCompu, int piso, byte aire, byte videoBeam, byte disponible, int id_equipo);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Registrar_Solicitud(Nullable<int> id_lab, string id_curso, Nullable<System.DateTime> fecha, Nullable<System.TimeSpan> hora_ini, Nullable<System.TimeSpan> hora_fin, Nullable<bool> activo);
+        void Registrar_Solicitud(int id_lab, string id_curso, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Registrar_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, Nullable<int> id_rol, string username, string contraseña);
+        void Registrar_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, int id_rol, string username, string contraseña);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        void Traer_ID_Labs();
+         List<string>Traer_ID_Labs();
 
-        
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        byte Validar_Cedula(int id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        byte Validar_Labs_Solicitado(int id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        byte Validar_Nick(string username);
     }
 }

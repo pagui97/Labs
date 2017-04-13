@@ -124,9 +124,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaBD\CapaBD.csproj">
-      <Project>{2bdb4501-e667-47a2-9279-2bb8dc21a7bb}</Project>
-      <Name>CapaBD</Name>
+    <ProjectReference Include="..\BD\BD.csproj">
+      <Project>{5d441ca4-64ba-41e5-9329-5ee671101a78}</Project>
+      <Name>BD</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
