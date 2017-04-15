@@ -16,10 +16,9 @@ namespace BD
         public byte videoBeam { get; set; }
 
         public byte disponible { get; set; }
-        public int id_equipo { get; set; }
 
 
-        public static void Registrar_Laboratorio(int id_lab,int cantCompu,int piso , byte aire,byte videoBeam,byte disponible,int id_equipo)
+        public static void Registrar_Laboratorio(int id_lab,int cantCompu,int piso , byte aire,byte videoBeam,byte disponible)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -30,7 +29,6 @@ namespace BD
             nuevo.aire = aire;
             nuevo.videoBeam = videoBeam;
             nuevo.disponible = disponible;
-            nuevo.id_equipo = id_equipo;
             SqlCommand cmd = new SqlCommand("Registrar_Laboratorio");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
@@ -39,12 +37,11 @@ namespace BD
             cmd.Parameters.AddWithValue(@"aire", nuevo.aire);
             cmd.Parameters.AddWithValue(@"videoBeam", nuevo.videoBeam);
             cmd.Parameters.AddWithValue(@"disponible", nuevo.disponible);
-            cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
             cmd.ExecuteNonQuery();
             cnx.cerrarConexion();
 
         }
-        public static void Actualizar_Laboratorio(int id_lab, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible, int id_equipo)
+        public static void Actualizar_Laboratorio(int id_lab, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -55,7 +52,6 @@ namespace BD
             nuevo.aire = aire;
             nuevo.videoBeam = videoBeam;
             nuevo.disponible = disponible;
-            nuevo.id_equipo = id_equipo;
             SqlCommand cmd = new SqlCommand("Actualizar_Laboratorio");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue(@"id", nuevo.id_lab);
@@ -64,7 +60,6 @@ namespace BD
             cmd.Parameters.AddWithValue(@"aire", nuevo.aire);
             cmd.Parameters.AddWithValue(@"videoBeam", nuevo.videoBeam);
             cmd.Parameters.AddWithValue(@"disponible", nuevo.disponible);
-            cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
             cmd.ExecuteNonQuery();
             cnx.cerrarConexion();
 
@@ -96,7 +91,6 @@ namespace BD
             nuevo.aire = Convert.ToByte(reader["aire"].ToString());
             nuevo.videoBeam = Convert.ToByte(reader["videoBeam"].ToString());
             nuevo.disponible = Convert.ToByte(reader["disponible"].ToString());
-            nuevo.id_equipo = Convert.ToInt32(reader["id_equipo"].ToString());
             return nuevo;
         }
 

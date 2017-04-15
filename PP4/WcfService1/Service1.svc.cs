@@ -26,11 +26,11 @@ namespace WcfService1
 
         }
 
-        public void Actualizar_Equipo(int id, string config, string software, string sistOper, string servidores)
+        public void Actualizar_Equipo(int id, string config, string software, string sistOper, string servidores,int id_lab)
         {
             try
             {
-                Equipo.Actualizar_Equipo(id,config,software,sistOper,servidores);
+                Equipo.Actualizar_Equipo(id,config,software,sistOper,servidores,  id_lab);
             }
             catch (Exception)
             {
@@ -40,11 +40,11 @@ namespace WcfService1
 
         }
 
-        public void Actualizar_Laboratorio(int id, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible, int id_equipo)
+        public void Actualizar_Laboratorio(int id, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible)
         {
             try
             {
-                Laboratorio.Actualizar_Laboratorio(id,cantCompu,piso,aire,videoBeam,disponible,id_equipo);
+                Laboratorio.Actualizar_Laboratorio(id,cantCompu,piso,aire,videoBeam,disponible);
 
             }
             catch (Exception)
@@ -171,11 +171,11 @@ namespace WcfService1
             }
         }
 
-        public void Registrar_Equipo(int id_equipo,string config, string software, string sistOper, string servidores)
+        public void Registrar_Equipo(int id_equipo,string config, string software, string sistOper, string servidores,int id_lab)
         {
             try
             {
-                Equipo.Registrar_Equipo(id_equipo,config, software, sistOper, servidores);
+                Equipo.Registrar_Equipo(id_equipo,config, software, sistOper, servidores,id_lab);
             }
             catch (Exception)
             {
@@ -184,11 +184,11 @@ namespace WcfService1
             }
         }
 
-        public void Registrar_Laboratorio(int id_lab, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible, int id_equipo)
+        public void Registrar_Laboratorio(int id_lab, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible)
         {
             try
             {
-                Laboratorio.Registrar_Laboratorio(id_lab,cantCompu,piso,aire,videoBeam,disponible,id_equipo);
+                Laboratorio.Registrar_Laboratorio(id_lab,cantCompu,piso,aire,videoBeam,disponible);
             }
             catch (Exception)
             {

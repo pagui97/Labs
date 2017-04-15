@@ -14,7 +14,8 @@ namespace BD
         public string software { get; set; }
         public string sistOper { get; set; }
         public string servidores { get; set; }
-        public static void Registrar_Equipo(int id_equipo,string config,string software, string sistOper, string servidores)
+        public int id_lab { get; set; }
+        public static void Registrar_Equipo(int id_equipo,string config,string software, string sistOper, string servidores, int id_lab)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -24,6 +25,7 @@ namespace BD
             nuevo.software = software;
             nuevo.sistOper = sistOper;
             nuevo.servidores = servidores;
+            nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Registrar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
@@ -31,12 +33,13 @@ namespace BD
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
             cmd.Parameters.AddWithValue(@"sistOper", nuevo.sistOper);
             cmd.Parameters.AddWithValue(@"servidores", nuevo.servidores);
+            cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
             cnx.cerrarConexion();
 
         }
 
-        public static void Actualizar_Equipo(int id_equipo, string config, string software, string sistOper, string servidores)
+        public static void Actualizar_Equipo(int id_equipo, string config, string software, string sistOper, string servidores, int id_lab)
         {
             Conexion cnx = new Conexion();
             cnx.abrirConexion();
@@ -46,6 +49,7 @@ namespace BD
             nuevo.software = software;
             nuevo.sistOper = sistOper;
             nuevo.servidores = servidores;
+            nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Actualizar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
@@ -53,6 +57,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
             cmd.Parameters.AddWithValue(@"sistOper", nuevo.sistOper);
             cmd.Parameters.AddWithValue(@"servidores", nuevo.servidores);
+            cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
             cnx.cerrarConexion();
 
