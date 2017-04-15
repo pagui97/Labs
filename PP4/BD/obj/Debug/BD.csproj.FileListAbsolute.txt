@@ -4,7 +4,6 @@ C:\Users\artur\Desktop\Programacion 4\Proyecto\PP4\PP4\BD\obj\Debug\BD.csproj.Ge
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\bin\Debug\BD.exe.config
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\bin\Debug\BD.exe
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\bin\Debug\BD.pdb
-C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.csprojResolveAssemblyReference.cache
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.Properties.Resources.resources
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.csproj.GenerateResource.Cache
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.exe
