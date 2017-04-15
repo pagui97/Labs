@@ -56,11 +56,46 @@ update usuario set nombre = @nombre, apellido1 = @apellido1, apellido2 = @apelli
 where cedula = @cedula;
 
 
+create procedure Registrar_Laboratorio
+@id_lab integer,
+@cantCompu TINYINT,
+@piso TINYINT,
+@aire BIT,
+@videoBeam BIT,
+@disponible BIT
+as
+insert into Laboratorio (id_lab, cantCompu,piso,aire,videoBeam,disponible)
+values(@id_lab,@cantCompu,@piso,@aire,@videoBeam,@disponible);
+
+create procedure Eliminar_Laboratorio
+@id integer
+as
+delete from Laboratorio where id_lab = @id;
+
+create procedure Buscar_Laboratorio_ID
+@id integer
+as
+select  cantCompu,piso,aire,videoBeam,disponible from Laboratorio 
+where id_lab = @id;
+
+create procedure Actualizar_Laboratorio
+@id integer,
+@cantCompu TINYINT,
+@piso TINYINT,
+@aire BIT,
+@videoBeam BIT,
+@disponible BIT
+as
+update Laboratorio set  cantCompu = @cantCompu, piso= @piso, aire = @aire, videoBeam = @videoBeam, disponible = @disponible
+where id_lab = @id;
+
+
 create procedure Registrar_Equipo
 @config VARCHAR(100),
 @software VARCHAR(200),
 @sistOper VARCHAR(100),
-@servidores VARCHAR(100)
+@servidores VARCHAR(100),
+@id_lab INTEGER
 as
 insert into equipo (config, software, sistOper, servidores)values(@config,@software, @sistOper, @servidores);
 
@@ -69,7 +104,8 @@ create procedure Actualizar_Equipo
 @config VARCHAR(100),
 @software VARCHAR(200),
 @sistOper VARCHAR(100),
-@servidores VARCHAR(100)
+@servidores VARCHAR(100),
+@id_lab INTEGER
 as
 update equipo set config = @config, software = @software, sistOper = @sistOper, servidores = @servidores
 where id_equipo = @id;
@@ -84,40 +120,8 @@ create procedure Eliminar_Equipo
 as
 delete from equipo where id_equipo = @id
 
-create procedure Registrar_Laboratorio
-@id_lab integer,
-@cantCompu TINYINT,
-@piso TINYINT,
-@aire BIT,
-@videoBeam BIT,
-@disponible BIT,
-@id_equipo INTEGER
-as
-insert into Laboratorio (id_lab, cantCompu,piso,aire,videoBeam,disponible,id_equipo)
-values(@id_lab,@cantCompu,@piso,@aire,@videoBeam,@disponible,@id_equipo);
 
-create procedure Eliminar_Laboratorio
-@id integer
-as
-delete from Laboratorio where id_lab = @id;
 
-create procedure Buscar_Laboratorio_ID
-@id integer
-as
-select  cantCompu,piso,aire,videoBeam,disponible,id_equipo from Laboratorio 
-where id_lab = @id;
-
-create procedure Actualizar_Laboratorio
-@id integer,
-@cantCompu TINYINT,
-@piso TINYINT,
-@aire BIT,
-@videoBeam BIT,
-@disponible BIT,
-@id_equipo INTEGER
-as
-update Laboratorio set  cantCompu = @cantCompu, piso= @piso, aire = @aire, videoBeam = @videoBeam, disponible = @disponible, id_equipo = @id_equipo
-where id_lab = @id;
 
 create procedure Registrar_Curso
 @id_curso VARCHAR(5),
