@@ -15,10 +15,10 @@ namespace BD
         public string sistOper { get; set; }
         public string servidores { get; set; }
         public int id_lab { get; set; }
-        public static void Registrar_Equipo(int id_equipo,string config,string software, string sistOper, string servidores, int id_lab)
+        public static void Registrar_Equipo(int id_equipo, string config, string software, string sistOper, string servidores, int id_lab)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Equipo nuevo = new Equipo();
             nuevo.id_equipo = id_equipo;
             nuevo.config = config;
@@ -28,6 +28,7 @@ namespace BD
             nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Registrar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
@@ -35,14 +36,14 @@ namespace BD
             cmd.Parameters.AddWithValue(@"servidores", nuevo.servidores);
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
 
         }
 
         public static void Actualizar_Equipo(int id_equipo, string config, string software, string sistOper, string servidores, int id_lab)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Equipo nuevo = new Equipo();
             nuevo.id_equipo = id_equipo;
             nuevo.config = config;
@@ -52,6 +53,7 @@ namespace BD
             nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Actualizar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
@@ -59,30 +61,32 @@ namespace BD
             cmd.Parameters.AddWithValue(@"servidores", nuevo.servidores);
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
 
         }
         public static void Eliminar_Equipo(int id_equipo)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Equipo nuevo = new Equipo();
             nuevo.id_equipo = id_equipo;
             SqlCommand cmd = new SqlCommand("Eliminar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
 
         }
 
         public static Equipo Buscar_Equipo(int id_equipo)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Equipo nuevo = new Equipo();
             SqlCommand cmd = new SqlCommand("Buscar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -91,7 +95,7 @@ namespace BD
             nuevo.servidores = reader["servidores"].ToString();
             nuevo.software = reader["software"].ToString();
             nuevo.sistOper = reader["sistOper"].ToString();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
             cmd.Dispose();
             reader.Dispose();
             return nuevo;

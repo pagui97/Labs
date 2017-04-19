@@ -15,10 +15,10 @@ namespace BD
         public TimeSpan hora_ini { get; set; }
         public TimeSpan hora_fin { get; set; }
         public byte activo { get; set; }
-        public static void Registrar_Solicitud(int id_lab,string id_curso,DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo)
+        public static void Registrar_Solicitud(int id_lab, string id_curso, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Solicitud nuevo = new Solicitud();
             nuevo.id_lab = id_lab;
             nuevo.id_curso = id_curso;
@@ -27,6 +27,7 @@ namespace BD
             nuevo.hora_fin = hora_fin;
             SqlCommand cmd = new SqlCommand("Registrar_Solicitud");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_curso);
             cmd.Parameters.AddWithValue(@"fecha", nuevo.fecha);
@@ -34,7 +35,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"hora_fin", nuevo.hora_fin);
             cmd.Parameters.AddWithValue(@"activo", nuevo.activo);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
         }
     }
 }

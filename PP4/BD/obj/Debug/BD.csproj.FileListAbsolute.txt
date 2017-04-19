@@ -8,3 +8,4 @@ C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.Properties.Resources.re
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.csproj.GenerateResource.Cache
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.exe
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.pdb
+C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.csprojResolveAssemblyReference.cache

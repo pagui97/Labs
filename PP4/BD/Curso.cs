@@ -13,12 +13,12 @@ namespace BD
         public string cedula { get; set; }
         public string nombre { get; set; }
         public int turno { get; set; }
-      
+
 
         public static void Registrar_Curso(string id_curso, string cedula, string nombre, int turno)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             nuevo.cedula = cedula;
@@ -26,19 +26,20 @@ namespace BD
             nuevo.turno = turno;
             SqlCommand cmd = new SqlCommand("Registrar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
             cmd.Parameters.AddWithValue(@"turno", nuevo.turno);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
 
         }
 
         public static void Actualizar_Curso(string id_curso, string cedula, string nombre, int turno)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             nuevo.cedula = cedula;
@@ -46,35 +47,38 @@ namespace BD
             nuevo.turno = turno;
             SqlCommand cmd = new SqlCommand("Actualizar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
             cmd.Parameters.AddWithValue(@"turno", nuevo.turno);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
 
         }
 
         public static void Eliminar_Curso(string id_curso)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             SqlCommand cmd = new SqlCommand("Eliminar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.ExecuteNonQuery();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
         }
 
         public static Curso Buscar_Curso(string id)
         {
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             Curso nuevo = new Curso();
             SqlCommand cmd = new SqlCommand("Eliminar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -82,7 +86,7 @@ namespace BD
             nuevo.turno = int.Parse(reader["turno"].ToString());
             nuevo.nombre = reader["nombre"].ToString();
             nuevo.cedula = reader["cedula"].ToString();
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
             reader.Dispose();
             cmd.Dispose();
             return nuevo;
@@ -93,10 +97,11 @@ namespace BD
         public static List<Curso> Buscar_Curso_Cedula_Profesor(string id)
         {
             List<Curso> lista = new List<Curso>();
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Buscar_Curso_Cedula_Profesor");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -110,7 +115,7 @@ namespace BD
                 lista.Add(nuevo);
             }
 
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
             reader.Dispose();
             cmd.Dispose();
             return lista;

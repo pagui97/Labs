@@ -24,44 +24,13 @@ namespace BD
         public static List<Reportes> Reporte_Solicitud_Laboratorio_General()
         {
             List<Reportes> listadoGeneral = new List<Reportes>();
-            
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Reporte_Solicitud_Laboratorio_General");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             //cmd.Parameters.AddWithValue(@"id", id);
-            SqlDataReader reader;
-            reader = cmd.ExecuteReader();
-            
-            while (reader.Read())
-            {
-                Reportes ojb = new Reportes();
-                ojb.Cedula = reader.GetString(0);
-                ojb.Nombre = reader.GetString(1);
-                ojb.Apellido = reader.GetString(2);
-                ojb.ID_lab = reader.GetInt32(3);
-                ojb.cantidad = reader.GetInt32(4);
-                ojb.piso = reader.GetInt32(5);
-                ojb.fecha = reader.GetDateTime(6);
-                ojb.hora_ini = reader.GetTimeSpan(7);
-                ojb.hora_fin = reader.GetTimeSpan(8);
-                ojb.curso_ID = reader.GetString(9);
-                ojb.id_solicitud = reader.GetInt32(10);
-                listadoGeneral.Add(ojb);
-             }
-            cnx.cerrarConexion();
-            return listadoGeneral;
-        }
-
-        public static List<Reportes> Reporte_Solicitud_Cedula(string cedula)
-        {
-            List<Reportes> listadoGeneral = new List<Reportes>();
-
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
-            SqlCommand cmd = new SqlCommand("Reporte_Solicitud_Cedula");
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue(@"cedula", cedula );
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
 
@@ -81,7 +50,40 @@ namespace BD
                 ojb.id_solicitud = reader.GetInt32(10);
                 listadoGeneral.Add(ojb);
             }
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
+            return listadoGeneral;
+        }
+
+        public static List<Reportes> Reporte_Solicitud_Cedula(string cedula)
+        {
+            List<Reportes> listadoGeneral = new List<Reportes>();
+
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
+            SqlCommand cmd = new SqlCommand("Reporte_Solicitud_Cedula");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
+            cmd.Parameters.AddWithValue(@"cedula", cedula);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Reportes ojb = new Reportes();
+                ojb.Cedula = reader.GetString(0);
+                ojb.Nombre = reader.GetString(1);
+                ojb.Apellido = reader.GetString(2);
+                ojb.ID_lab = reader.GetInt32(3);
+                ojb.cantidad = reader.GetInt32(4);
+                ojb.piso = reader.GetInt32(5);
+                ojb.fecha = reader.GetDateTime(6);
+                ojb.hora_ini = reader.GetTimeSpan(7);
+                ojb.hora_fin = reader.GetTimeSpan(8);
+                ojb.curso_ID = reader.GetString(9);
+                ojb.id_solicitud = reader.GetInt32(10);
+                listadoGeneral.Add(ojb);
+            }
+            nueva.objconexion().Close();
             return listadoGeneral;
         }
 
@@ -89,10 +91,11 @@ namespace BD
         {
             List<Reportes> listadoGeneral = new List<Reportes>();
 
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Reporte_solicitud_Fecha");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"fecha", fecha);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -113,7 +116,7 @@ namespace BD
                 ojb.id_solicitud = reader.GetInt32(10);
                 listadoGeneral.Add(ojb);
             }
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
             return listadoGeneral;
         }
 
@@ -121,10 +124,11 @@ namespace BD
         {
             List<Reportes> listadoGeneral = new List<Reportes>();
 
-            Conexion cnx = new Conexion();
-            cnx.abrirConexion();
+            Conexion nueva = new Conexion();
+            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Reporte_Solicitud_ID_Lab");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_lab", id_lab);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -145,7 +149,7 @@ namespace BD
                 ojb.id_solicitud = reader.GetInt32(10);
                 listadoGeneral.Add(ojb);
             }
-            cnx.cerrarConexion();
+            nueva.objconexion().Close();
             return listadoGeneral;
         }
     }

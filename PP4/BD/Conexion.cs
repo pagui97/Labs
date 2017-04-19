@@ -7,22 +7,17 @@ using System.Threading.Tasks;
 
 namespace BD
 {
-    class Conexion { 
-    
+    class Conexion {
 
 
-        public void abrirConexion()
+
+        public SqlConnection objconexion()
         {
-            SqlConnection conexion = new SqlConnection();
-            conexion.ConnectionString = "Data Source=DESKTOP-DL12JHA;Initial Catalog=labs;Integrated Security=True";
-            conexion.Open();
+            SqlConnection nueva = new SqlConnection();
+            nueva.ConnectionString = "Data Source=DESKTOP-DL12JHA;Initial Catalog=labs;Integrated Security=True";
+            return nueva;
         }
-        public void cerrarConexion()
-        {
-            SqlConnection conexion = new SqlConnection();
-            conexion.ConnectionString = "Data Source=DESKTOP-DL12JHA;Initial Catalog=labs;Integrated Security=True";
-            conexion.Close();
-        }
+
 
     }
 }
