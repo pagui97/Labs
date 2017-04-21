@@ -24,9 +24,9 @@ namespace BD
             nuevo.nombre = nombre;
             nuevo.turno = turno;
             SqlCommand cmd = new SqlCommand("Registrar_Curso");
-            cmd.Connection = nueva.objconexion(); ;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
@@ -48,8 +48,8 @@ namespace BD
             nuevo.turno = turno;
             SqlCommand cmd = new SqlCommand("Actualizar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);

@@ -14,19 +14,19 @@ namespace WcfService1
     public interface IService1
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Curso")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Curso?id_curso={id_curso}&cedula={cedula}&nombre={nombre}&turno={turno}")]
         void Actualizar_Curso(string id_curso, string cedula, string nombre, int turno);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Equipo")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Equipo?id={id}&config={config}&software={software}&sistOper={sistOper}&servidores={servidores}&id_lab={id_lab}")]
         void Actualizar_Equipo(int id, string config, string software, string sistOper, string servidores,int id_lab);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Laboratorio")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Laboratorio?id={id}&cantCompu={cantCompu}&piso={piso}&aire={aire}&videoBeam={videoBeam}&disponible={disponible}")]
         void Actualizar_Laboratorio(int id, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Actualizar_Usuario")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Actualizar_Usuario?cedula={cedula}&nombre={nombre}&apellido1={apellido1}&apellido2={apellido2}&ocupacion={ocupacion}&contraseña={contraseña}")]
         void Actualizar_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, string contraseña);
 
         [OperationContract]
