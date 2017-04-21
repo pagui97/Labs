@@ -21,7 +21,6 @@ namespace BD
         public static void Registrar_Laboratorio(int id_lab, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Laboratorio nuevo = new Laboratorio();
             nuevo.id_lab = id_lab;
             nuevo.cantCompu = cantCompu;
@@ -32,6 +31,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Registrar_Laboratorio");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.Parameters.AddWithValue(@"cantCompu", nuevo.cantCompu);
             cmd.Parameters.AddWithValue(@"piso", nuevo.piso);
@@ -39,13 +39,12 @@ namespace BD
             cmd.Parameters.AddWithValue(@"videoBeam", nuevo.videoBeam);
             cmd.Parameters.AddWithValue(@"disponible", nuevo.disponible);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
 
         }
         public static void Actualizar_Laboratorio(int id_lab, int cantCompu, int piso, byte aire, byte videoBeam, byte disponible)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Laboratorio nuevo = new Laboratorio();
             nuevo.id_lab = id_lab;
             nuevo.cantCompu = cantCompu;
@@ -56,6 +55,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Actualizar_Laboratorio");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", nuevo.id_lab);
             cmd.Parameters.AddWithValue(@"cantCompu", nuevo.cantCompu);
             cmd.Parameters.AddWithValue(@"piso", nuevo.piso);
@@ -63,28 +63,29 @@ namespace BD
             cmd.Parameters.AddWithValue(@"videoBeam", nuevo.videoBeam);
             cmd.Parameters.AddWithValue(@"disponible", nuevo.disponible);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
         }
 
         public static void Eliminar_Laboratorio(int id_lab)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
+            
             SqlCommand cmd = new SqlCommand("Eliminar_Laboratorio");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", id_lab);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
         }
         public static Laboratorio Buscar_Laboratorio(int id)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Laboratorio nuevo = new Laboratorio();
             SqlCommand cmd = new SqlCommand("Buscar_Laboratorio");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -94,7 +95,7 @@ namespace BD
             nuevo.aire = Convert.ToByte(reader["aire"].ToString());
             nuevo.videoBeam = Convert.ToByte(reader["videoBeam"].ToString());
             nuevo.disponible = Convert.ToByte(reader["disponible"].ToString());
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
             return nuevo;
         }
 
@@ -102,11 +103,11 @@ namespace BD
         {
             List<string> ids = new List<string>();
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Laboratorio nuevo = new Laboratorio();
             SqlCommand cmd = new SqlCommand("Traer_ID_Labs");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -120,12 +121,12 @@ namespace BD
         public static byte Validar_Labs_Solicitado(int id)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Execute dbo.Validar_Labs_Solicitado");
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", id);
             byte resultado = (Byte)cmd.ExecuteScalar();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
             return resultado;
         }
     }

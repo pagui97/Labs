@@ -18,7 +18,7 @@ namespace BD
         public static void Registrar_Curso(string id_curso, string cedula, string nombre, int turno)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
+            
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             nuevo.cedula = cedula;
@@ -27,19 +27,20 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Registrar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
             cmd.Parameters.AddWithValue(@"turno", nuevo.turno);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
+            
 
         }
 
         public static void Actualizar_Curso(string id_curso, string cedula, string nombre, int turno)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             nuevo.cedula = cedula;
@@ -47,13 +48,15 @@ namespace BD
             nuevo.turno = turno;
             SqlCommand cmd = new SqlCommand("Actualizar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
             cmd.Parameters.AddWithValue(@"turno", nuevo.turno);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
+
 
         }
 
@@ -65,10 +68,11 @@ namespace BD
             nuevo.id_cruso = id_curso;
             SqlCommand cmd = new SqlCommand("Eliminar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Open();
         }
 
         public static Curso Buscar_Curso(string id)
@@ -79,6 +83,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Eliminar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_curso", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -86,7 +91,7 @@ namespace BD
             nuevo.turno = int.Parse(reader["turno"].ToString());
             nuevo.nombre = reader["nombre"].ToString();
             nuevo.cedula = reader["cedula"].ToString();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
             reader.Dispose();
             cmd.Dispose();
             return nuevo;
@@ -102,6 +107,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Buscar_Curso_Cedula_Profesor");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_curso", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -115,7 +121,7 @@ namespace BD
                 lista.Add(nuevo);
             }
 
-            nueva.objconexion().Close();
+            cmd.Connection.Open();
             reader.Dispose();
             cmd.Dispose();
             return lista;

@@ -18,7 +18,6 @@ namespace BD
         public static void Registrar_Solicitud(int id_lab, string id_curso, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Solicitud nuevo = new Solicitud();
             nuevo.id_lab = id_lab;
             nuevo.id_curso = id_curso;
@@ -28,6 +27,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Registrar_Solicitud");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_curso);
             cmd.Parameters.AddWithValue(@"fecha", nuevo.fecha);
@@ -35,7 +35,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"hora_fin", nuevo.hora_fin);
             cmd.Parameters.AddWithValue(@"activo", nuevo.activo);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
         }
     }
 }
