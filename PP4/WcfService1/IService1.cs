@@ -57,7 +57,7 @@ namespace WcfService1
         void Eliminar_Laboratorio(int id);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Registrar_Curso")]
+        [WebInvoke(Method = "GET",ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Registrar_Curso?id_curso={id_curso}&cedula={cedula}&nombre={nombre}&turno={turno}")]
         void Registrar_Curso(string id_curso, string cedula, string nombre, int turno);
 
         [OperationContract]

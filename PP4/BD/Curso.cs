@@ -18,15 +18,14 @@ namespace BD
         public static void Registrar_Curso(string id_curso, string cedula, string nombre, int turno)
         {
             Conexion nueva = new Conexion();
-            
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             nuevo.cedula = cedula;
             nuevo.nombre = nombre;
             nuevo.turno = turno;
             SqlCommand cmd = new SqlCommand("Registrar_Curso");
+            cmd.Connection = nueva.objconexion(); ;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
@@ -34,6 +33,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"turno", nuevo.turno);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
+            
             
 
         }
@@ -80,17 +80,19 @@ namespace BD
             Conexion nueva = new Conexion();
             nueva.objconexion().Open();
             Curso nuevo = new Curso();
-            SqlCommand cmd = new SqlCommand("Eliminar_Curso");
+            SqlCommand cmd = new SqlCommand("Buscar_Curso_ID");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id_curso", id);
+            cmd.Parameters.AddWithValue(@"id", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
-            nuevo.id_cruso = reader["id_curso"].ToString();
-            nuevo.turno = int.Parse(reader["turno"].ToString());
-            nuevo.nombre = reader["nombre"].ToString();
-            nuevo.cedula = reader["cedula"].ToString();
+            while (reader.Read())
+            {
+                nuevo.turno = int.Parse(reader["turno"].ToString());
+                nuevo.nombre = reader["nombre"].ToString();
+                nuevo.cedula = reader["cedula"].ToString();
+            }
             cmd.Connection.Close();
             reader.Dispose();
             cmd.Dispose();
