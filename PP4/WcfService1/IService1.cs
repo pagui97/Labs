@@ -34,7 +34,7 @@ namespace WcfService1
         List<Curso> Buscar_Curso_Cedula_Profesor(string cedula);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Curso_ID")]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Buscar_Curso_ID?id={id}")]
         Curso Buscar_Curso_ID(string id);
 
         [OperationContract]

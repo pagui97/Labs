@@ -9,3 +9,11 @@ C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.csproj.GenerateResource
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.exe
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.pdb
 C:\Users\artur\Documents\GitHub\Labs\PP4\BD\obj\Debug\BD.csprojResolveAssemblyReference.cache
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\bin\Debug\BD.exe.config
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\bin\Debug\BD.exe
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\bin\Debug\BD.pdb
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\obj\Debug\BD.csprojResolveAssemblyReference.cache
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\obj\Debug\BD.Properties.Resources.resources
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\obj\Debug\BD.csproj.GenerateResource.Cache
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\obj\Debug\BD.exe
+C:\Users\Pao\Documents\GitHub\Labs\Labs\PP4\BD\obj\Debug\BD.pdb
