@@ -54,7 +54,7 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
+            cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
             cmd.Parameters.AddWithValue(@"sistOper", nuevo.sistOper);
