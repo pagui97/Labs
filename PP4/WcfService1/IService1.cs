@@ -50,10 +50,10 @@ namespace WcfService1
         void Eliminar_Curso(string id_curso);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate ="Eliminar_Equipo?id={id}")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate ="Eliminar_Equipo?id={id}")]
         void Eliminar_Equipo(int id);
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Eliminar_Laboratorio?id={id}")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Eliminar_Laboratorio?id={id}")]
         void Eliminar_Laboratorio(int id);
 
         [OperationContract]
