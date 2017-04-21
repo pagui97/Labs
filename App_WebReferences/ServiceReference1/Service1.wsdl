@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:51116/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:51116/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:51116/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BD" />
+      <xsd:import schemaLocation="http://localhost:51116/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_Actualizar_Curso_InputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_Curso" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Curso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_CursoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Equipo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_Equipo" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Equipo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_EquipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Laboratorio_InputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_Laboratorio" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Laboratorio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_LaboratorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Usuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_Usuario" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Actualizar_Usuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar_UsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Curso_Cedula_Profesor_InputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Curso_Cedula_Profesor" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Curso_Cedula_Profesor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Curso_Cedula_ProfesorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Curso_ID_InputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Curso_ID" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Curso_ID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Curso_IDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Equipo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Equipo" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Equipo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_EquipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Laboratorio_ID_InputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Laboratorio_ID" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Buscar_Laboratorio_ID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Buscar_Laboratorio_IDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Eliminar_Curso_InputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar_Curso" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Eliminar_Curso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar_CursoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Eliminar_Equipo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar_Equipo" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Eliminar_Equipo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar_EquipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Eliminar_Laboratorio_InputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar_Laboratorio" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Eliminar_Laboratorio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar_LaboratorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Curso_InputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_Curso" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Curso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_CursoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Equipo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_Equipo" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Equipo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_EquipoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Laboratorio_InputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_Laboratorio" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Laboratorio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_LaboratorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Solicitud_InputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_Solicitud" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Solicitud_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_SolicitudResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Usuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_Usuario" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Registrar_Usuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Registrar_UsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Traer_ID_Labs_InputMessage">
+    <wsdl:part name="parameters" element="tns:Traer_ID_Labs" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Traer_ID_Labs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Traer_ID_LabsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Validar_Cedula_InputMessage">
+    <wsdl:part name="parameters" element="tns:Validar_Cedula" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Validar_Cedula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Validar_CedulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Validar_Labs_Solicitado_InputMessage">
+    <wsdl:part name="parameters" element="tns:Validar_Labs_Solicitado" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Validar_Labs_Solicitado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Validar_Labs_SolicitadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Validar_Nick_InputMessage">
+    <wsdl:part name="parameters" element="tns:Validar_Nick" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Validar_Nick_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Validar_NickResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_Solicitud_Laboratorio_General_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_Solicitud_Laboratorio_General" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_Solicitud_Laboratorio_General_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_Solicitud_Laboratorio_GeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_Solicitud_Cedula_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_Solicitud_Cedula" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_Solicitud_Cedula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_Solicitud_CedulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_solicitud_Fecha_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_solicitud_Fecha" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_solicitud_Fecha_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_solicitud_FechaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_Solicitud_ID_Lab_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_Solicitud_ID_Lab" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reporte_Solicitud_ID_Lab_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Reporte_Solicitud_ID_LabResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="Actualizar_Curso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Actualizar_Curso" message="tns:IService1_Actualizar_Curso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Actualizar_CursoResponse" message="tns:IService1_Actualizar_Curso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_Equipo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Actualizar_Equipo" message="tns:IService1_Actualizar_Equipo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Actualizar_EquipoResponse" message="tns:IService1_Actualizar_Equipo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_Laboratorio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Actualizar_Laboratorio" message="tns:IService1_Actualizar_Laboratorio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Actualizar_LaboratorioResponse" message="tns:IService1_Actualizar_Laboratorio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_Usuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Actualizar_Usuario" message="tns:IService1_Actualizar_Usuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Actualizar_UsuarioResponse" message="tns:IService1_Actualizar_Usuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Curso_Cedula_Profesor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Buscar_Curso_Cedula_Profesor" message="tns:IService1_Buscar_Curso_Cedula_Profesor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Buscar_Curso_Cedula_ProfesorResponse" message="tns:IService1_Buscar_Curso_Cedula_Profesor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Curso_ID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Buscar_Curso_ID" message="tns:IService1_Buscar_Curso_ID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Buscar_Curso_IDResponse" message="tns:IService1_Buscar_Curso_ID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Equipo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Buscar_Equipo" message="tns:IService1_Buscar_Equipo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Buscar_EquipoResponse" message="tns:IService1_Buscar_Equipo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Laboratorio_ID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Buscar_Laboratorio_ID" message="tns:IService1_Buscar_Laboratorio_ID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Buscar_Laboratorio_IDResponse" message="tns:IService1_Buscar_Laboratorio_ID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar_Curso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Eliminar_Curso" message="tns:IService1_Eliminar_Curso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Eliminar_CursoResponse" message="tns:IService1_Eliminar_Curso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar_Equipo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Eliminar_Equipo" message="tns:IService1_Eliminar_Equipo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Eliminar_EquipoResponse" message="tns:IService1_Eliminar_Equipo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar_Laboratorio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Eliminar_Laboratorio" message="tns:IService1_Eliminar_Laboratorio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Eliminar_LaboratorioResponse" message="tns:IService1_Eliminar_Laboratorio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Curso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Registrar_Curso" message="tns:IService1_Registrar_Curso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Registrar_CursoResponse" message="tns:IService1_Registrar_Curso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Equipo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Registrar_Equipo" message="tns:IService1_Registrar_Equipo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Registrar_EquipoResponse" message="tns:IService1_Registrar_Equipo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Laboratorio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Registrar_Laboratorio" message="tns:IService1_Registrar_Laboratorio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Registrar_LaboratorioResponse" message="tns:IService1_Registrar_Laboratorio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Solicitud">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Registrar_Solicitud" message="tns:IService1_Registrar_Solicitud_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Registrar_SolicitudResponse" message="tns:IService1_Registrar_Solicitud_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Usuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Registrar_Usuario" message="tns:IService1_Registrar_Usuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Registrar_UsuarioResponse" message="tns:IService1_Registrar_Usuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Traer_ID_Labs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Traer_ID_Labs" message="tns:IService1_Traer_ID_Labs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Traer_ID_LabsResponse" message="tns:IService1_Traer_ID_Labs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Validar_Cedula">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Validar_Cedula" message="tns:IService1_Validar_Cedula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Validar_CedulaResponse" message="tns:IService1_Validar_Cedula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Validar_Labs_Solicitado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Validar_Labs_Solicitado" message="tns:IService1_Validar_Labs_Solicitado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Validar_Labs_SolicitadoResponse" message="tns:IService1_Validar_Labs_Solicitado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Validar_Nick">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Validar_Nick" message="tns:IService1_Validar_Nick_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Validar_NickResponse" message="tns:IService1_Validar_Nick_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_Solicitud_Laboratorio_General">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Reporte_Solicitud_Laboratorio_General" message="tns:IService1_Reporte_Solicitud_Laboratorio_General_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Reporte_Solicitud_Laboratorio_GeneralResponse" message="tns:IService1_Reporte_Solicitud_Laboratorio_General_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_Solicitud_Cedula">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Reporte_Solicitud_Cedula" message="tns:IService1_Reporte_Solicitud_Cedula_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Reporte_Solicitud_CedulaResponse" message="tns:IService1_Reporte_Solicitud_Cedula_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_solicitud_Fecha">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Reporte_solicitud_Fecha" message="tns:IService1_Reporte_solicitud_Fecha_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Reporte_solicitud_FechaResponse" message="tns:IService1_Reporte_solicitud_Fecha_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_Solicitud_ID_Lab">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Reporte_Solicitud_ID_Lab" message="tns:IService1_Reporte_Solicitud_ID_Lab_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/Reporte_Solicitud_ID_LabResponse" message="tns:IService1_Reporte_Solicitud_ID_Lab_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Actualizar_Curso">
+      <soap:operation soapAction="http://tempuri.org/IService1/Actualizar_Curso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_Equipo">
+      <soap:operation soapAction="http://tempuri.org/IService1/Actualizar_Equipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_Laboratorio">
+      <soap:operation soapAction="http://tempuri.org/IService1/Actualizar_Laboratorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_Usuario">
+      <soap:operation soapAction="http://tempuri.org/IService1/Actualizar_Usuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Curso_Cedula_Profesor">
+      <soap:operation soapAction="http://tempuri.org/IService1/Buscar_Curso_Cedula_Profesor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Curso_ID">
+      <soap:operation soapAction="http://tempuri.org/IService1/Buscar_Curso_ID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Equipo">
+      <soap:operation soapAction="http://tempuri.org/IService1/Buscar_Equipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Buscar_Laboratorio_ID">
+      <soap:operation soapAction="http://tempuri.org/IService1/Buscar_Laboratorio_ID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar_Curso">
+      <soap:operation soapAction="http://tempuri.org/IService1/Eliminar_Curso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar_Equipo">
+      <soap:operation soapAction="http://tempuri.org/IService1/Eliminar_Equipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar_Laboratorio">
+      <soap:operation soapAction="http://tempuri.org/IService1/Eliminar_Laboratorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Curso">
+      <soap:operation soapAction="http://tempuri.org/IService1/Registrar_Curso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Equipo">
+      <soap:operation soapAction="http://tempuri.org/IService1/Registrar_Equipo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Laboratorio">
+      <soap:operation soapAction="http://tempuri.org/IService1/Registrar_Laboratorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Solicitud">
+      <soap:operation soapAction="http://tempuri.org/IService1/Registrar_Solicitud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Registrar_Usuario">
+      <soap:operation soapAction="http://tempuri.org/IService1/Registrar_Usuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Traer_ID_Labs">
+      <soap:operation soapAction="http://tempuri.org/IService1/Traer_ID_Labs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validar_Cedula">
+      <soap:operation soapAction="http://tempuri.org/IService1/Validar_Cedula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validar_Labs_Solicitado">
+      <soap:operation soapAction="http://tempuri.org/IService1/Validar_Labs_Solicitado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validar_Nick">
+      <soap:operation soapAction="http://tempuri.org/IService1/Validar_Nick" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_Solicitud_Laboratorio_General">
+      <soap:operation soapAction="http://tempuri.org/IService1/Reporte_Solicitud_Laboratorio_General" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_Solicitud_Cedula">
+      <soap:operation soapAction="http://tempuri.org/IService1/Reporte_Solicitud_Cedula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_solicitud_Fecha">
+      <soap:operation soapAction="http://tempuri.org/IService1/Reporte_solicitud_Fecha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reporte_Solicitud_ID_Lab">
+      <soap:operation soapAction="http://tempuri.org/IService1/Reporte_Solicitud_ID_Lab" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:51116/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

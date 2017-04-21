@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/BD" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BD" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51116/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfCurso">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Curso" nillable="true" type="tns:Curso" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCurso" nillable="true" type="tns:ArrayOfCurso" />
+  <xs:complexType name="Curso">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cedula" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id_cruso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="turno" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Curso" nillable="true" type="tns:Curso" />
+  <xs:complexType name="Equipo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="config" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id_equipo" type="xs:int" />
+      <xs:element minOccurs="0" name="id_lab" type="xs:int" />
+      <xs:element minOccurs="0" name="servidores" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sistOper" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="software" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Equipo" nillable="true" type="tns:Equipo" />
+  <xs:complexType name="Laboratorio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aire" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="cantCompu" type="xs:int" />
+      <xs:element minOccurs="0" name="disponible" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="id_lab" type="xs:int" />
+      <xs:element minOccurs="0" name="piso" type="xs:int" />
+      <xs:element minOccurs="0" name="videoBeam" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Laboratorio" nillable="true" type="tns:Laboratorio" />
+  <xs:complexType name="ArrayOfReportes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reportes" nillable="true" type="tns:Reportes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportes" nillable="true" type="tns:ArrayOfReportes" />
+  <xs:complexType name="Reportes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Apellido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cedula" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_lab" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cantidad" type="xs:int" />
+      <xs:element minOccurs="0" name="curso_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="hora_fin" type="ser:duration" />
+      <xs:element minOccurs="0" name="hora_ini" type="ser:duration" />
+      <xs:element minOccurs="0" name="id_solicitud" type="xs:int" />
+      <xs:element minOccurs="0" name="piso" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Reportes" nillable="true" type="tns:Reportes" />
+</xs:schema>
