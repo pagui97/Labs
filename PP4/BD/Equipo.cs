@@ -28,6 +28,7 @@ namespace BD
             nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Registrar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
@@ -36,7 +37,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"servidores", nuevo.servidores);
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
 
         }
 
@@ -54,6 +55,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Actualizar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
@@ -61,7 +63,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"servidores", nuevo.servidores);
             cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
 
         }
         public static void Eliminar_Equipo(int id_equipo)
@@ -72,10 +74,11 @@ namespace BD
             nuevo.id_equipo = id_equipo;
             SqlCommand cmd = new SqlCommand("Eliminar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
             cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Open();
 
         }
 
@@ -87,6 +90,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Buscar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
@@ -95,7 +99,7 @@ namespace BD
             nuevo.servidores = reader["servidores"].ToString();
             nuevo.software = reader["software"].ToString();
             nuevo.sistOper = reader["sistOper"].ToString();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
             cmd.Dispose();
             reader.Dispose();
             return nuevo;

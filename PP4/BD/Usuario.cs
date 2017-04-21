@@ -24,7 +24,6 @@ namespace BD
         public static void Registrar_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, int id_rol, string username, string contrasena)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Usuario nuevo = new Usuario();
             nuevo.cedula = cedula;
             nuevo.nombre = nombre;
@@ -37,6 +36,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Registrar_Usuario");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
             cmd.Parameters.AddWithValue(@"apellido1", nuevo.apellido1);
@@ -46,14 +46,13 @@ namespace BD
             cmd.Parameters.AddWithValue(@"userName", nuevo.userName);
             cmd.Parameters.AddWithValue(@"contrasena", nuevo.contrasena);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
 
         }
 
         public static void Actualiza_Usuario(string cedula, string nombre, string apellido1, string apellido2, string ocupacion, string contrasena)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Usuario nuevo = new Usuario();
             nuevo.cedula = cedula;
             nuevo.nombre = nombre;
@@ -64,6 +63,7 @@ namespace BD
             SqlCommand cmd = new SqlCommand("Actualizar_Usuario");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"cedula", nuevo.cedula);
             cmd.Parameters.AddWithValue(@"nombre", nuevo.nombre);
             cmd.Parameters.AddWithValue(@"apellido1", nuevo.apellido1);
@@ -71,31 +71,32 @@ namespace BD
             cmd.Parameters.AddWithValue(@"ocupacion", nuevo.ocupacion);
             cmd.Parameters.AddWithValue(@"contrasena", nuevo.contrasena);
             cmd.ExecuteNonQuery();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
+            
 
         }
 
         public static byte Validar_Cedula(int id)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Execute dbo.Validar_Cedula");
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", id);
             byte resultado = (Byte)cmd.ExecuteScalar();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
             return resultado;
 
         }
         public static byte Validar_Nick(string username)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             SqlCommand cmd = new SqlCommand("Execute dbo.Validar_Nick");
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"username", username);
             byte resultado = (Byte)cmd.ExecuteScalar();
-            nueva.objconexion().Close();
+            cmd.Connection.Close();
             return resultado;
 
         }
