@@ -14,7 +14,7 @@ namespace BD
         public SqlConnection objconexion()
         {
             SqlConnection nueva = new SqlConnection();
-            nueva.ConnectionString = "Data Source=DESKTOP-DL12JHA;Initial Catalog=labs;Integrated Security=True";
+            nueva.ConnectionString = @"Data Source=PAGUIMENDEZ\SQL2014N1;Initial Catalog=labs;Integrated Security=True";
             return nueva;
         }
 
