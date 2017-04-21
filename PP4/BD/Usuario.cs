@@ -72,7 +72,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"contraseña", nuevo.contraseña);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
-            
+
 
         }
 
