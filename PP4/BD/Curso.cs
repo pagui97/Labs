@@ -89,6 +89,7 @@ namespace BD
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
+                nuevo.id_cruso = reader["id_curso"].ToString();
                 nuevo.turno = int.Parse(reader["turno"].ToString());
                 nuevo.nombre = reader["nombre"].ToString();
                 nuevo.cedula = reader["cedula"].ToString();

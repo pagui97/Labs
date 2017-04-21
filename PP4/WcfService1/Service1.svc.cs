@@ -172,11 +172,11 @@ namespace WcfService1
             }
         }
 
-        public void Registrar_Equipo(int id_equipo,string config, string software, string sistOper, string servidores,int id_lab)
+        public void Registrar_Equipo(string config, string software, string sistOper, string servidores,int id_lab)
         {
             try
             {
-                Equipo.Registrar_Equipo(id_equipo,config, software, sistOper, servidores,id_lab);
+                Equipo.Registrar_Equipo(config, software, sistOper, servidores,id_lab);
             }
             catch (Exception)
             {

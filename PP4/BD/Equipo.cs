@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,12 +15,11 @@ namespace BD
         public string sistOper { get; set; }
         public string servidores { get; set; }
         public int id_lab { get; set; }
-        public static void Registrar_Equipo(int id_equipo, string config, string software, string sistOper, string servidores, int id_lab)
+        public static void Registrar_Equipo(string config, string software, string sistOper, string servidores, int id_lab)
         {
             Conexion nueva = new Conexion();
             nueva.objconexion().Open();
             Equipo nuevo = new Equipo();
-            nuevo.id_equipo = id_equipo;
             nuevo.config = config;
             nuevo.software = software;
             nuevo.sistOper = sistOper;
@@ -28,9 +27,8 @@ namespace BD
             nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Registrar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
-            cmd.Parameters.AddWithValue(@"id_equipo", nuevo.id_equipo);
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
             cmd.Parameters.AddWithValue(@"sistOper", nuevo.sistOper);

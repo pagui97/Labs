@@ -17,7 +17,7 @@ namespace BD
         public string ocupacion { get; set; }
         public int id_rol { get; set; }
         public string userName { get; set; }
-        public string contrasena { get; set; }
+        public string contraseña { get; set; }
         #endregion
 
         #region metodos
@@ -32,7 +32,7 @@ namespace BD
             nuevo.ocupacion = ocupacion;
             nuevo.id_rol = id_rol;
             nuevo.userName = username;
-            nuevo.contrasena = contrasena;
+            nuevo.contraseña = contrasena;
             SqlCommand cmd = new SqlCommand("Registrar_Usuario");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
@@ -44,7 +44,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"ocupacion", nuevo.ocupacion);
             cmd.Parameters.AddWithValue(@"id_rol", nuevo.id_rol);
             cmd.Parameters.AddWithValue(@"userName", nuevo.userName);
-            cmd.Parameters.AddWithValue(@"contrasena", nuevo.contrasena);
+            cmd.Parameters.AddWithValue(@"contraseña", nuevo.contraseña);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
 
@@ -59,7 +59,7 @@ namespace BD
             nuevo.apellido1 = apellido1;
             nuevo.apellido2 = apellido2;
             nuevo.ocupacion = ocupacion;
-            nuevo.contrasena = contrasena;
+            nuevo.contraseña = contrasena;
             SqlCommand cmd = new SqlCommand("Actualizar_Usuario");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
@@ -69,7 +69,7 @@ namespace BD
             cmd.Parameters.AddWithValue(@"apellido1", nuevo.apellido1);
             cmd.Parameters.AddWithValue(@"apellido2", nuevo.apellido2);
             cmd.Parameters.AddWithValue(@"ocupacion", nuevo.ocupacion);
-            cmd.Parameters.AddWithValue(@"contrasena", nuevo.contrasena);
+            cmd.Parameters.AddWithValue(@"contraseña", nuevo.contraseña);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
             
