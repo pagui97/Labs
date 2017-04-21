@@ -84,25 +84,28 @@ namespace BD
         {
             Conexion nueva = new Conexion();
             nueva.objconexion().Open();
-            Equipo nuevo = new Equipo();
             SqlCommand cmd = new SqlCommand("Buscar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
+            cmd.Parameters.AddWithValue(@"id", id_equipo);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
-            nuevo.config = reader["config"].ToString();
-            nuevo.id_equipo = int.Parse(reader["id_equipo"].ToString());
-            nuevo.servidores = reader["servidores"].ToString();
-            nuevo.software = reader["software"].ToString();
-            nuevo.sistOper = reader["sistOper"].ToString();
+            Equipo nuevo = new Equipo();
+            nuevo.id_equipo = id_equipo;
+            while (reader.Read())
+            {
+                nuevo.config = reader["config"].ToString();
+                nuevo.servidores = reader["servidores"].ToString();
+                nuevo.software = reader["software"].ToString();
+                nuevo.sistOper = reader["sistOper"].ToString();
+                nuevo.id_lab = int.Parse(reader["id_lab"].ToString());
+            }
+            
             cmd.Connection.Close();
             cmd.Dispose();
             reader.Dispose();
             return nuevo;
-
-
         }
     }
 

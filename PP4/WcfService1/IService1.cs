@@ -42,7 +42,7 @@ namespace WcfService1
         Equipo Buscar_Equipo(int id);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Laboratorio?id={id}")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Laboratorio_ID?id={id}")]
         Laboratorio Buscar_Laboratorio_ID(int id);
 
         [OperationContract]

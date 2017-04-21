@@ -102,7 +102,7 @@ namespace BD
 
         }
 
-        public static List<Curso> Buscar_Curso_Cedula_Profesor(string id)
+        public static List<Curso> Buscar_Curso_Cedula_Profesor(string cedula)
         {
             List<Curso> lista = new List<Curso>();
             Conexion nueva = new Conexion();
@@ -111,7 +111,7 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id_curso", id);
+            cmd.Parameters.AddWithValue(@"cedula", cedula);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -124,7 +124,7 @@ namespace BD
                 lista.Add(nuevo);
             }
 
-            cmd.Connection.Open();
+            cmd.Connection.Close();
             reader.Dispose();
             cmd.Dispose();
             return lista;

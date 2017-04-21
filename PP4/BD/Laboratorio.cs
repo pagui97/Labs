@@ -82,19 +82,23 @@ namespace BD
         {
             Conexion nueva = new Conexion();
             Laboratorio nuevo = new Laboratorio();
-            SqlCommand cmd = new SqlCommand("Buscar_Laboratorio");
+            nuevo.id_lab = id;
+            SqlCommand cmd = new SqlCommand("Buscar_Laboratorio_ID");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id", id);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
-            nuevo.id_lab = int.Parse(reader["id_lab"].ToString());
-            nuevo.cantCompu = int.Parse(reader["cantCompu"].ToString());
-            nuevo.piso = int.Parse(reader["piso"].ToString());
-            nuevo.aire = Convert.ToByte(reader["aire"].ToString());
-            nuevo.videoBeam = Convert.ToByte(reader["videoBeam"].ToString());
-            nuevo.disponible = Convert.ToByte(reader["disponible"].ToString());
+            while (reader.Read())
+            {
+                nuevo.cantCompu = int.Parse(reader["cantCompu"].ToString());
+                nuevo.piso = int.Parse(reader["piso"].ToString());
+                nuevo.aire = Convert.ToByte(reader["aire"]);
+                nuevo.videoBeam = Convert.ToByte(reader["videoBeam"]);
+                nuevo.disponible = Convert.ToByte(reader["disponible"]);
+            }
+            
             cmd.Connection.Close();
             return nuevo;
         }
