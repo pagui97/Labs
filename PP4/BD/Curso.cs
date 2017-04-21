@@ -63,16 +63,15 @@ namespace BD
         public static void Eliminar_Curso(string id_curso)
         {
             Conexion nueva = new Conexion();
-            nueva.objconexion().Open();
             Curso nuevo = new Curso();
             nuevo.id_cruso = id_curso;
             SqlCommand cmd = new SqlCommand("Eliminar_Curso");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Connection.Open();
             cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
             cmd.Parameters.AddWithValue(@"id_curso", nuevo.id_cruso);
             cmd.ExecuteNonQuery();
-            cmd.Connection.Open();
+            cmd.Connection.Close();
         }
 
         public static Curso Buscar_Curso(string id)

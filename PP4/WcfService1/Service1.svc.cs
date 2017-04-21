@@ -131,6 +131,7 @@ namespace WcfService1
 
                 throw;
             }
+            
         }
 
         public void Eliminar_Equipo(int id)
