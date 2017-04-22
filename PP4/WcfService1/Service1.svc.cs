@@ -282,6 +282,32 @@ namespace WcfService1
             }
         }
 
+        public List<Reportes> Traer_Info_Solicitud(int id_lab)
+        {
+            try
+            {
+                return Reportes.Traer_Info_Solicitud(id_lab);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<Reportes> Traer_solicitudes()
+        {
+            try
+            {
+                return Reportes.Traer_solicitudes();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
 
 

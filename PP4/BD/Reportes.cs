@@ -12,14 +12,15 @@ namespace BD
         public string Cedula {get; set ;}
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public string Apellido2 { get; set; }
         public int ID_lab { get; set; }
         public int cantidad { get; set; }
         public int piso { get; set; }
         public DateTime fecha { get; set; }
         public TimeSpan hora_ini { get; set; }
         public TimeSpan hora_fin { get; set; }
-        public string curso_ID { get; set; }
         public int id_solicitud { get; set; }
+        public byte activo { get; set; }
 
         public static List<Reportes> Reporte_Solicitud_Laboratorio_General()
         {
@@ -46,8 +47,7 @@ namespace BD
                 ojb.fecha = reader.GetDateTime(6);
                 ojb.hora_ini = reader.GetTimeSpan(7);
                 ojb.hora_fin = reader.GetTimeSpan(8);
-                ojb.curso_ID = reader.GetString(9);
-                ojb.id_solicitud = reader.GetInt32(10);
+                ojb.id_solicitud = reader.GetInt32(9);
                 listadoGeneral.Add(ojb);
             }
             cmd.Connection.Close();
@@ -79,8 +79,7 @@ namespace BD
                 ojb.fecha = reader.GetDateTime(6);
                 ojb.hora_ini = reader.GetTimeSpan(7);
                 ojb.hora_fin = reader.GetTimeSpan(8);
-                ojb.curso_ID = reader.GetString(9);
-                ojb.id_solicitud = reader.GetInt32(10);
+                ojb.id_solicitud = reader.GetInt32(9);
                 listadoGeneral.Add(ojb);
             }
             cmd.Connection.Close();
@@ -112,8 +111,7 @@ namespace BD
                 ojb.fecha = reader.GetDateTime(6);
                 ojb.hora_ini = reader.GetTimeSpan(7);
                 ojb.hora_fin = reader.GetTimeSpan(8);
-                ojb.curso_ID = reader.GetString(9);
-                ojb.id_solicitud = reader.GetInt32(10);
+                ojb.id_solicitud = reader.GetInt32(9);
                 listadoGeneral.Add(ojb);
             }
             cmd.Connection.Close();
@@ -145,12 +143,69 @@ namespace BD
                 ojb.fecha = reader.GetDateTime(6);
                 ojb.hora_ini = reader.GetTimeSpan(7);
                 ojb.hora_fin = reader.GetTimeSpan(8);
-                ojb.curso_ID = reader.GetString(9);
-                ojb.id_solicitud = reader.GetInt32(10);
+                ojb.id_solicitud = reader.GetInt32(9);
                 listadoGeneral.Add(ojb);
             }
             cmd.Connection.Close();
             return listadoGeneral;
+        }
+
+        public static List<Reportes> Traer_Info_Solicitud(int id_lab)
+        {
+            List<Reportes> listadoGeneral = new List<Reportes>();
+            Conexion nueva = new Conexion();
+            SqlCommand cmd = new SqlCommand("Traer_Info_Solicitud");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
+            cmd.Parameters.AddWithValue(@"id_lab", id_lab);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Reportes ojb = new Reportes();
+                ojb.Nombre = reader.GetString(0);
+                ojb.Apellido = reader.GetString(1);
+                ojb.Apellido2 = reader.GetString(2);
+                ojb.Cedula = reader.GetString(3);
+                ojb.fecha = reader.GetDateTime(4);
+                ojb.hora_ini = reader.GetTimeSpan(5);
+                ojb.hora_fin = reader.GetTimeSpan(6);
+                ojb.id_solicitud = reader.GetInt32(7);
+                listadoGeneral.Add(ojb);
+            }
+            cmd.Connection.Close();
+            return listadoGeneral;
+        }
+
+        public static List<Reportes> Traer_solicitudes()
+        {
+            List<Reportes> listadoGeneral = new List<Reportes>();
+            Conexion nueva = new Conexion();
+            SqlCommand cmd = new SqlCommand("Traer_solicitudes");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Reportes ojb = new Reportes();
+                ojb.Nombre = reader.GetString(0);
+                ojb.Apellido = reader.GetString(1);
+                ojb.Apellido2 = reader.GetString(2);
+                ojb.Cedula = reader.GetString(3);
+                ojb.fecha = reader.GetDateTime(4);
+                ojb.hora_ini = reader.GetTimeSpan(5);
+                ojb.hora_fin = reader.GetTimeSpan(6);
+                ojb.id_solicitud = reader.GetInt32(7);
+                listadoGeneral.Add(ojb);
+            }
+            cmd.Connection.Close();
+            return listadoGeneral;
+            
         }
     }
 }

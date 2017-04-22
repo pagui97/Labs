@@ -99,6 +99,14 @@ namespace WcfService1
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Reporte_Solicitud_ID_Lab?id_lab={id_lab}")]
         List<Reportes> Reporte_Solicitud_ID_Lab(int id_lab);
-        
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Traer_Info_Solicitud?id_lab={id_lab}")]
+        List<Reportes> Traer_Info_Solicitud(int id_lab);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Traer_solicitudes?id_lab={id_lab}")]
+        List<Reportes> Traer_solicitudes();
+
     }
 }
