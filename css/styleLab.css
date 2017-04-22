@@ -44,6 +44,7 @@ header h1 {
 #piso2 h3, #piso3 h3, #piso4 h3{
 	text-align: center;
 	margin-top: 20px;
+	color: beige;
 }
 
 #content{
@@ -57,7 +58,7 @@ header h1 {
 	letter-spacing: 0.5em;
 }
 .icon{
-	margin: 20px 0 20px 0;
+	margin: 80px 0 20px 0;
 	padding: 30px 15px 30px 15px;
 
 }
@@ -71,9 +72,9 @@ header h1 {
 	display: inline;
 	text-align: center;
 	float: right;
-	width: 100px;
+	width: 200px;
 	border: 2px solid #b3b3ff;
-	margin: 40px 1px 40px 1px;
+	margin: 40px 15px 40px 15px;
 	padding: 40px;
 	background-color: #CEECF5;
 	position: relative;
