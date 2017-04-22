@@ -14,24 +14,13 @@ namespace WcfService1
     [ServiceBehavior (AddressFilterMode = AddressFilterMode.Any)]
     public class Service1 : IService1
     {
-        public void Actualizar_Curso(string id_curso, string cedula, string nombre, int turno)
-        {
-            try
-            {
-                Curso.Actualizar_Curso(id_curso, cedula, nombre, turno);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
+       
 
         public void Actualizar_Equipo(int id, string config, string software, string sistOper, string servidores,int id_lab)
         {
             try
             {
-                Equipo.Actualizar_Equipo(id,config,software,sistOper,servidores,  id_lab);
+                Equipo.Actualizar_Equipo(config,software,sistOper,servidores,  id_lab);
             }
             catch (Exception)
             {
@@ -67,34 +56,8 @@ namespace WcfService1
                 throw;
             }
         }
-        public List<Curso> Buscar_Curso_Cedula_Profesor(string cedula)
-        {
-            try
-            {
-                List<Curso> lista = new List<Curso>();
-                lista = Curso.Buscar_Curso_Cedula_Profesor(cedula);
-                return lista ;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        public Curso Buscar_Curso_ID(string id)
-        {
-            try
-            {
-                
-                return Curso.Buscar_Curso(id);
-             
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+       
+       
         public Equipo Buscar_Equipo(int id)
         {
             try
@@ -120,19 +83,7 @@ namespace WcfService1
             }
         }
 
-        public void Eliminar_Curso(string id_curso)
-        {
-            try
-            {
-                Curso.Eliminar_Curso(id_curso);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            
-        }
+       
 
         public void Eliminar_Equipo(int id)
         {
@@ -160,18 +111,7 @@ namespace WcfService1
             }
         }
 
-        public void Registrar_Curso(string id_curso, string cedula, string nombre, int turno)
-        {
-            try
-            {
-                Curso.Registrar_Curso(id_curso, cedula, nombre, turno);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+       
 
         public void Registrar_Equipo(string config, string software, string sistOper, string servidores,int id_lab)
         {

@@ -39,12 +39,11 @@ namespace BD
 
         }
 
-        public static void Actualizar_Equipo(int id_equipo, string config, string software, string sistOper, string servidores, int id_lab)
+        public static void Actualizar_Equipo( string config, string software, string sistOper, string servidores, int id_lab)
         {
             Conexion nueva = new Conexion();
             nueva.objconexion().Open();
             Equipo nuevo = new Equipo();
-            nuevo.id_equipo = id_equipo;
             nuevo.config = config;
             nuevo.software = software;
             nuevo.sistOper = sistOper;
@@ -54,7 +53,6 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
             cmd.Parameters.AddWithValue(@"config", nuevo.config);
             cmd.Parameters.AddWithValue(@"software", nuevo.software);
             cmd.Parameters.AddWithValue(@"sistOper", nuevo.sistOper);
