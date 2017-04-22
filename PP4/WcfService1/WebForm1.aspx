@@ -113,13 +113,16 @@
             var cantCompu = $("#txtCant").val();
             var piso = $("#txtPiso").val();
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/Resgistrar_Laboratorio?id_lab=" + id_lab + "&cantCompu=" + cantCompu + "&piso=" + piso + "&aire=" + aire + "&videoBeam=" + video + "&disponible=" + disponible,
+                url: "http://localhost:51116/Service1.svc/JSON/Registrar_Laboratorio?id_lab=" + id_lab + "&cantCompu=" + cantCompu + "&piso=" + piso + "&aire=" + aire + "&videoBeam=" + video + "&disponible=" + disponible,
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
                     alert("Resgistrado con éxito")
-                }
+                },
+                error:function(e) {
+                    alert(JSON.stringify(e));
+            }
             });
         }
 
