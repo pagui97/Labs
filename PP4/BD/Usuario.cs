@@ -128,25 +128,41 @@ namespace BD
             return nuevo;
         }
 
-        public static Boolean validarLogIn(string username , string contrasena)
+        public static string validarLogIn(string username , string contrasena)
         {
+            string retorno="";
             Conexion nueva = new Conexion();
-            SqlCommand cmd = new SqlCommand("select Count(*) from usuario where userName = '"+username+"' and contraseña = '"+contrasena+"'");
+            SqlCommand cmd = new SqlCommand("select userName,contraseña,id_rol from usuario where userName = '"+username+"' and contraseña = '"+contrasena+"'");
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            Usuario nuevo = new Usuario();
+            while (reader.Read())
             {
-                cmd.Connection.Close();
-                return true;
+                nuevo.id_rol = Convert.ToByte(reader["id_rol"]);
+                nuevo.userName = reader["userName"].ToString();
+                nuevo.contraseña = reader["contraseña"].ToString();
+            }
+            cmd.Connection.Close();
+            if (nuevo.userName=="")
+            {
+                retorno= "";
             }
             else
             {
-                cmd.Connection.Close();
-                return false;
+                if (nuevo.userName==username&&nuevo.contraseña==contrasena&&nuevo.id_rol==1)
+                {
+                    retorno= "Admin";
+                }else
+                {
+                    if (nuevo.userName == username && nuevo.contraseña == contrasena && nuevo.id_rol == 2)
+                    {
+                        retorno= "Profesor";
+                    }
+                }
             }
-            
+            return retorno;
         }
 
         #endregion
