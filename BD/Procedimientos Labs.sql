@@ -118,7 +118,7 @@ select e.config,e.software,e.sistOper,e.servidores from equipo e where e.id_equi
 create procedure Eliminar_Equipo
 @id integer
 as
-delete from equipo where id_equipo = @id
+delete from equipo where id_lab = @id
 
 
 create procedure Registrar_Solicitud

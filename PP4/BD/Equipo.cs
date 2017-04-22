@@ -64,16 +64,16 @@ namespace BD
             cmd.Connection.Close();
 
         }
-        public static void Eliminar_Equipo(int id_equipo)
+        public static void Eliminar_Equipo(int id_lab)
         {
             Conexion nueva = new Conexion();
             Equipo nuevo = new Equipo();
-            nuevo.id_equipo = id_equipo;
+            nuevo.id_lab = id_lab;
             SqlCommand cmd = new SqlCommand("Eliminar_Equipo");
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id", nuevo.id_equipo);
+            cmd.Parameters.AddWithValue(@"id", nuevo.id_lab);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
             
