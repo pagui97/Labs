@@ -101,6 +101,32 @@ namespace BD
 
         }
 
+        public static Usuario Buscar_Usuario(string cedula)
+        {
+            Conexion nueva = new Conexion();
+            Usuario nuevo = new Usuario();
+            nuevo.cedula = cedula;
+            SqlCommand cmd = new SqlCommand("Buscar_Usuario_Cedula");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
+            cmd.Parameters.AddWithValue(@"cedula", cedula);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                nuevo.nombre = reader["nombre"].ToString();
+                nuevo.apellido1 = reader["apellido1"].ToString();
+                nuevo.apellido2 = reader["apellido2"].ToString();
+                nuevo.ocupacion = reader["ocupacion"].ToString();
+                nuevo.id_rol = Convert.ToByte(reader["id_rol"]);
+                nuevo.userName = reader["userName"].ToString();
+                nuevo.contraseña = reader["contraseña"].ToString();
+            }
+
+            cmd.Connection.Close();
+            return nuevo;
+        }
 
         #endregion
     }

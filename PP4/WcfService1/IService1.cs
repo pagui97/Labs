@@ -38,8 +38,10 @@ namespace WcfService1
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Laboratorio_ID?id={id}")]
         Laboratorio Buscar_Laboratorio_ID(int id);
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Buscar_Usuario_Cedula?cedula={cedula}")]
+        Usuario Buscar_Usuario_Cedula(string cedula)
 
-      
 
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate ="Eliminar_Equipo?id={id}")]
@@ -60,7 +62,7 @@ namespace WcfService1
 
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Registrar_Solicitud?id_lab={id_lab}&id_curso={id_curso}&fecha={fecha}&hora_ini={hora_ini}&hora_fin={hora_fin}&activo={activo}")]
-        void Registrar_Solicitud(int id_lab, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo);
+        void Registrar_Solicitud(int id_lab, string cedula, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo);
 
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Registrar_Usuario?cedula={cedula}&nombre={nombre}&apellido1={apellido1}&apellido2={apellido2}&ocupacion={ocupacion}&id_rol={id_rol}&username={username}&contraseña={contraseña}")]
