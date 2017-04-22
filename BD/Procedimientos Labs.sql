@@ -115,12 +115,12 @@ update equipo set config = @config, software = @software, sistOper = @sistOper, 
 where id_lab = @id_lab;
 
 create procedure Buscar_Equipo
-@id integer
+@id_lab integer
 as
-select e.config,e.software,e.sistOper,e.servidores from equipo e where e.id_equipo = @id;
+select e.config,e.software,e.sistOper,e.servidores from equipo e where e.id_lab = @id_lab;
 
 create procedure Eliminar_Equipo
-@id integer
+@id_lab integer
 as
 delete from equipo where id_lab = @id
 
