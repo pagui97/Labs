@@ -11,6 +11,11 @@ as
 insert into usuario(cedula, nombre, apellido1, apellido2, ocupacion, id_rol, userName, contraseña)
 values(@cedula, @nombre, @apellido1, @apellido2, @ocupacion, @id_rol, @username, @contraseña);
 
+create procedure Buscar_Usuario_Cedula
+@cedula integer
+as
+select  cedula, nombre, apellido1, apellido2, ocupacion, id_rol, userName, contraseña from Usuario
+where cedula = @cedula;
 
 --Valida si ya existe el nombre de usuario registrado, devuelve true o false
 create function Validar_Nick
@@ -100,7 +105,6 @@ as
 insert into equipo (config, software, sistOper, servidores)values(@config,@software, @sistOper, @servidores);
 
 create procedure Actualizar_Equipo
-@id integer,
 @config VARCHAR(100),
 @software VARCHAR(200),
 @sistOper VARCHAR(100),
@@ -108,7 +112,7 @@ create procedure Actualizar_Equipo
 @id_lab INTEGER
 as
 update equipo set config = @config, software = @software, sistOper = @sistOper, servidores = @servidores
-where id_equipo = @id;
+where id_lab = @id_lab;
 
 create procedure Buscar_Equipo
 @id integer
