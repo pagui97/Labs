@@ -139,7 +139,7 @@
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
-                    alert("Resgistrado con éxito")
+                    alert(data)
                 },
                 error: function (e) {
                     alert(JSON.stringify(e));
@@ -245,21 +245,17 @@
                 InsertarLab();
                 InsertarEquipo();
             })
-        })
-
-        $(document).ready(function () {
             $("#botonactualizar").click(function () {
                 ActualizarLab();
                 ActualizarEquipo();
             })
-        })
-
-        $(document).ready(function () {
             $("#botoneliminar").click(function () {
                 EliminarEquipo();
                 EliminarLaboratorio();
             })
+
         })
+
 
         
         
