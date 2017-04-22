@@ -85,7 +85,7 @@ namespace WcfService1
         byte Validar_Nick(string username);
         
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Reporte_Solicitud_Laboratorio_General")]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Reporte_Solicitud_Laboratorio_General")]
         List<Reportes> Reporte_Solicitud_Laboratorio_General();
 
         [OperationContract]
