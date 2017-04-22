@@ -129,9 +129,9 @@
         function InsertarEquipo() {
            
             var config = $("#txtConfig").val();
-            var sofware = $("#txtSoftw").val()
+            var software = $("#txtSoftw").val()
             var sistOper = $("#txtSisOp").val();
-            var servidores = $("txtServer").val();
+            var servidores = $("#txtServer").val();
             var id_lab = $("#txtId").val();
             $.ajax({
                 url: "http://localhost:51116/Service1.svc/JSON/Registrar_Equipo?config=" + config + "&software=" + software + "&sistOper=" + sistOper + "&servidores=" + servidores + "&id_lab=" + id_lab,
@@ -168,12 +168,12 @@
             var cantCompu = $("#txtCant").val();
             var piso = $("#txtPiso").val();
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/Actualizar_Laboratorio?id="+id+"&cantCompu="+cantCompu+"&piso="+piso+"&aire="+aire+"&videoBeam="+videoBeam+"&disponible="+disponible,
+                url: "http://localhost:51116/Service1.svc/JSON/Actualizar_Laboratorio?id="+id_lab+"&cantCompu="+cantCompu+"&piso="+piso+"&aire="+aire+"&videoBeam="+video+"&disponible="+disponible,
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
-                    alert("Actualizado con éxito")
+                    alert(data)
                 },
                 error: function (e) {
                     alert(JSON.stringify(e));
@@ -184,7 +184,7 @@
         function ActualizarEquipo() {
 
             var config = $("#txtConfig").val();
-            var sofware = $("#txtSoftw").val()
+            var software = $("#txtSoftw").val()
             var sistOper = $("#txtSisOp").val();
             var servidores = $("txtServer").val();
             var id_lab = $("#txtId").val();
@@ -208,7 +208,7 @@
             var id_lab = $("#txtId").val();
             
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/Eliminar_Equipo?id_lab="+id,
+                url: "http://localhost:51116/Service1.svc/JSON/Eliminar_Equipo?id_lab="+id_lab,
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
@@ -227,12 +227,57 @@
             var id_lab = $("#txtId").val();
 
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/Eliminar_Laboratorio?id=" + id,
+                url: "http://localhost:51116/Service1.svc/JSON/Eliminar_Laboratorio?id=" + id_lab,
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
                     //alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
+        function BuscarLab() {
+            var id = $("#txtId").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Buscar_Laboratorio_ID?id=" + id,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    $("#txtCant").val(data['cantCompu']);
+                    $("#txtPiso").val(data['piso']);
+                    if (data["aire"] == 1) {
+                        $("#aire").prop("checked", "checked");
+                    }
+                    if (data["videoBeam"] == 1) {
+                        $("#video").prop("checked", "checked");
+                    }
+                    if (data["disponible"] == 1) {
+                        $("#disponible").prop("checked", "checked");
+                    }
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
+        function BuscarEquipo() {
+            var id = $("#txtId").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Buscar_Equipo?id_lab=" + id,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    $("#txtConfig").val(data['config']);
+                    $("#txtSoftw").val(data['software']);
+                    $("#txtSisOp").val(data['sistOper']);
+                    $("#txtServer").val(data['servidores']);
                 },
                 error: function (e) {
                     alert(JSON.stringify(e));
@@ -253,7 +298,10 @@
                 EliminarEquipo();
                 EliminarLaboratorio();
             })
-
+            $("#botonbuscar").click(function () {
+                BuscarLab();
+                BuscarEquipo();
+            })
         })
 
 

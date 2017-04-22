@@ -70,7 +70,7 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id", nuevo.id_lab);
+            cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
             
@@ -85,7 +85,7 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id_lab", id_lab);
+            cmd.Parameters.AddWithValue(@"id", id_lab);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
             Equipo nuevo = new Equipo();
