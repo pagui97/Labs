@@ -55,7 +55,7 @@
             var valor = $("#valor").val();
             var bit = true;
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_ID_Lab?id=" + valor, // url provisional 
+                url: "http://localhost:51116/Service1.svc/JSON/Aprobar_Denegar?activo="+bit +"&id_lab="+valor, 
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
