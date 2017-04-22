@@ -17,6 +17,114 @@
         <script src="jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+        <script type="text/javascript">
+            function Reporte_Solicitud_Laboratorio_General() {
+                $.ajax({
+                    url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_Laboratorio_General",
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (data) {
+                        var arreglo = [];
+                        arreglo = data;
+                        arreglo.map(function (item) {
+                            $("#cuerpoTabla").append("<tr><th>" + item.Cedula + "</th><th>" + item.Nombre +
+                                "</th><th>" + item.Apellido + "</th><th>" + item.ID_lab + "</th><th>" + item.cantidad + "</th><th>" + item.piso +
+                                "</th><th>" + item.fecha + "</th><th>" + item.hora_ini + "</th><th>" + item.hora_fin + "</th><th>" + item.curso_ID +
+                                "</th><th>" + item.id_solicitud + "</th> <tr>");
+                        })
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+                })
+            }
+
+            function Reporte_Solicitud_Cedula() {
+                var cedula = $("#cedula").val();
+                $.ajax({
+                    url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_Cedula?cedula="+ cedula,
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (data) {
+                        var arreglo = [];
+                        arreglo = data;
+                        arreglo.map(function (item) {
+                            $("#cuerpoTabla").append("<tr><td>" + item.Cedula + "</td><td>" + item.Nombre +
+                                "</td><td>" + item.Apellido + "</td><td>" + item.ID_lab + "</td><td>" + item.cantidad + "</td><td>" + item.piso +
+                                "</td><td>" + item.fecha + "</td><td>" + item.hora_ini + "</td><td>" + item.hora_fin + "</td><td>" + item.curso_ID +
+                                "</td><td>" + item.id_solicitud + "</td> <tr>");
+                        })
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+                })
+            }
+
+            function Reporte_Solicitud_Fecha() {
+                var fecha = $("#fecha").val();
+                $.ajax({
+                    url: "http://localhost:51116/Service1.svc/JSON/Reporte_solicitud_Fecha?fecha="+fecha,
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (data) {
+                        var arreglo = [];
+                        arreglo = data;
+                        arreglo.map(function (item) {
+                            $("#cuerpoTabla").append("<tr><td>" + item.Cedula + "</td><td>" + item.Nombre +
+                                "</td><td>" + item.Apellido + "</td><td>" + item.ID_lab + "</td><td>" + item.cantidad + "</td><td>" + item.piso +
+                                "</td><td>" + item.fecha + "</td><td>" + item.hora_ini + "</td><td>" + item.hora_fin + "</td><td>" + item.curso_ID +
+                                "</td><td>" + item.id_solicitud + "</td> <tr>");
+                        })
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+                })
+            }
+
+            function Reporte_Solicitud_id() {
+                var id = $("#id").val();
+                $.ajax({
+                    url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_ID_Lab?id="+id,
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (data) {
+                        var arreglo = [];
+                        arreglo = data;
+                        arreglo.map(function (item) {
+                            $("#cuerpoTabla").append("<tr><td>" + item.Cedula + "</td><td>" + item.Nombre +
+                                "</td><td>" + item.Apellido + "</td><td>" + item.ID_lab + "</td><td>" + item.cantidad + "</td><td>" + item.piso +
+                                "</td><td>" + item.fecha + "</td><td>" + item.hora_ini + "</td><td>" + item.hora_fin + "</td><td>" + item.curso_ID +
+                                "</td><td>" + item.id_solicitud + "</td> <tr>");
+                        })
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+                })
+            }
+
+           
+
+            $(document).ready(function () {
+                Reporte_Solicitud_Laboratorio_General();
+                $("#boton").click(function () {
+                     cedula = document.getElementById("cedula").value;
+                     fecha = document.getElementById("fecha").value;
+                     id = document.getElementById("id").value;
+                     if (cedula.length != 0) {
+                         Reporte_Solicitud_Cedula();
+                     } else if(fecha.length != 0) {
+                         Reporte_Solicitud_Fecha();
+                     } else if (id.length != 0) {
+                         Reporte_Solicitud_id();
+                     }
+                })
+            })
+
+        </script>
+
 
         <!-- Bootstrap Core CSS -->
         <link href="css/cssMante/bootstrap.min.css" rel="stylesheet"/>
@@ -64,10 +172,10 @@
                 <h2>Filtar</h2>
                 <form>
                     <fieldset>
-                        <label>Número de Cedula:</label><input class="txt" type="" name="">
-                        <label>ID Laboratorio:</label><input class="txt" type="" name="">
-                        <label>Fecha:</label><input class="txt" type="text" name="">
-                        <div class="boton"><input class="btnA" type="submit" name="" value="Buscar"></div>
+                        <label>Número de Cedula:</label><input class="txt" type="" name="" id="cedula">
+                        <label>ID Laboratorio:</label><input class="txt" type="" name="" id="id">
+                        <label>Fecha:</label><input class="txt" type="date" name="" id="fecha">
+                        <div class="boton"><input class="btnA" type="submit" name="" value="Buscar" id="boton"></div>
                     </fieldset>
                 </form>
             </div>
@@ -90,8 +198,8 @@
             </tr>
             </thead>
             <tbody id="cuerpoTabla"></tbody>
-            <!-- <tbody class="table-hover">
-            <tr>
+            <tbody class="table-hover">
+            <!--<tr>
                 <td class="text-left"></td>
                 <td class="text-left"></td>
                 <td class="text-left"></td>

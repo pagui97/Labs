@@ -22,6 +22,67 @@
     <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="css/styleLab.css"/>
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        function Reporte_Solicitud_id() {
+            var id;
+            $("#piso2 .popup-link").click(function () {
+                id = $(this).html();
+            })
+            $("#piso3 .popup-link").click(function () {
+                id = $(this).html();
+            })
+            $("#piso4 .popup-link").click(function () {
+                id = $(this).html();
+            })
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_ID_Lab?id=" + id,
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    var arreglo = [];
+                    arreglo = data;
+                    arreglo.map(function (item) {
+                        $("#cuerpoTabla").append("<tr><td>" + item.Cedula + "</td><td>" + item.Nombre +
+                            "</td><td>" + item.Apellido + "</td><td>" + item.ID_lab + "</td><td>" + item.cantidad + "</td><td>" + item.piso +
+                            "</td><td>" + item.fecha + "</td><td>" + item.hora_ini + "</td><td>" + item.hora_fin + "</td><td>" + item.curso_ID +
+                            "</td><td>" + item.id_solicitud + "</td> <tr>");
+                    })
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                }
+            })
+        }
+        function aprobar() {
+            var valor = $("#valor").val();
+            var bit = true;
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_ID_Lab?id=" + valor, // url provisional 
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    alert("Aprobado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+        });
+        
+            $(document).ready(function () {
+                $(".popup-link").click(function () {
+                    Reporte_Solicitud_id();
+                })
+                
+                $("#boton").click(function () {
+                    aprobar();
+                }
+
+        }
+       
+
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -65,12 +126,11 @@
                 <img class="icon" src="images/stairs_down.png"/>
                 <div class="soda"></div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">
-                    Laboratorio 1202</a>
+                    <a  href="#popup" class="popup-link">1202</a>
                     <img src="images/door.png"/>
                 </div>
                 <div class="lab" id="first">
-                    <a  href="#popup" class="popup-link">Laboratorio 1201</a>
+                    <a  href="#popup" class="popup-link">1201</a>
                     <img src="images/door.png"/>
                 </div>
                 <div class="clear"></div>
@@ -80,11 +140,11 @@
             </div>
             <div id="aulas2">
                 <div class="lab" id="fin">
-                    <a  href="#popup" class="popup-link">Laboratorio 1204</a>
+                    <a  href="#popup" class="popup-link">1204</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1203</a>
+                    <a  href="#popup" class="popup-link">1203</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="aula">
@@ -128,23 +188,23 @@
             </div>
             <div id="aulas2">
                 <div class="lab" id="fin">
-                    <a  href="#popup" class="popup-link">Laboratorio 1310</a>
+                    <a  href="#popup" class="popup-link">1310</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1309</a>
+                    <a  href="#popup" class="popup-link">1309</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1308</a>
+                    <a  href="#popup" class="popup-link">1308</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1307</a>
+                    <a  href="#popup" class="popup-link">1307</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1306</a>
+                    <a  href="#popup" class="popup-link">1306</a>
                     <img class="dcha" src="images/door.png"/>
                 </div>
                 <div class="clear"></div>
@@ -184,23 +244,23 @@
             </div>
             <div id="aulas2">
                 <div class="lab" id="fin">
-                    <a href="#popup" class="popup-link">Laboratorio 1410</a>
+                    <a href="#popup" class="popup-link">1410</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1409</a>
+                    <a  href="#popup" class="popup-link">1409</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1408</a>
+                    <a  href="#popup" class="popup-link">1408</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1407</a>
+                    <a  href="#popup" class="popup-link">1407</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">Laboratorio 1406</a>
+                    <a  href="#popup" class="popup-link" >1406</a>
                     <img class="dcha" src="images/door.png"/>
                 </div>
                 <div class="clear"></div>
@@ -218,7 +278,44 @@
     <div class="popup-contenedor">
         <h2>Solicitudes</h2>
 
-
+        <table class="table-fill">
+            <thead>
+            <tr>
+                <th class="text-left">Cedula</th>
+                <th class="text-left">Nombre</th>
+                <th class="text-left">Apellido</th>
+                <th class="text-left">ID-Laboratorio</th>
+                <th class="text-left">Cantidad-Computadoras</th>
+                <th class="text-left">Piso</th>
+                <th class="text-left">Fecha</th>
+                <th class="text-left">Hora-Inicio</th>
+                <th class="text-left">Hora-Fin</th>
+                <th class="text-left">ID-Curso</th>
+                <th class="text-left">ID-Solicitud</th>
+            </tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+            <tbody class="table-hover">
+            <!--<tr>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+                <td class="text-left"></td>
+            </tr>
+                
+                -->
+            </tbody>
+        </table>
+        <label>Codigo de solicitud a aprobrar</label>
+        <input id="valor" />
+        <input type="submit" id="boton" />
 
         <a class="popup-cerrar" href="#">X</a>
     </div>

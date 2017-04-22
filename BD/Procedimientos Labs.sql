@@ -102,7 +102,7 @@ create procedure Registrar_Equipo
 @servidores VARCHAR(100),
 @id_lab INTEGER
 as
-insert into equipo (config, software, sistOper, servidores)values(@config,@software, @sistOper, @servidores);
+insert into equipo (config, software, sistOper, servidores,id_lab)values(@config,@software, @sistOper, @servidores,@id_lab);
 
 create procedure Actualizar_Equipo
 @config VARCHAR(100),

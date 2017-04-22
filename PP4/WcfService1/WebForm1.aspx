@@ -84,9 +84,9 @@
         </div>
         <div id="botones">
             <div class="boton"><input class="btnA" type="submit" id="botonInsertar" value="Insertar"/></div>
-            <div class="boton"><input class="btnE" type="submit" name="" value="Eliminar"/></div>
-            <div class="boton"><input class="btnA" type="submit" name="" value="Buscar"/></div>
-            <div class="boton"><input class="btnE" type="submit" name="" value="Actualizar"/></div>
+            <div class="boton"><input class="btnE" type="submit" name="" value="Eliminar" id="botoneliminar"/></div>
+            <div class="boton"><input class="btnA" type="submit" name="" value="Buscar" id="botonbuscar" /></div>
+            <div class="boton"><input class="btnE" type="submit" name="" value="Actualizar" id="botonactualizar"/></div>
         </div>
     </div>
     <div class="clear"></div>
@@ -94,17 +94,17 @@
     <footer>Administración de Centros de Cómputo</footer>
     <script type="text/javascript">
         function InsertarLab() {
-            if ($('#aire').is(':checked')) {
+            if ($('#aire').prop("checked")) {
                 var aire = 1;
             } else {
                 aire = 0;
             }
-            if ($('#video').is(':checked')) {
+            if ($('#video').prop("checked")) {
                 var video = 1;
             } else {
                 video = 0;
             }
-            if ($('#disponible').is(':checked')) {
+            if ($('#disponible').prop("checked")) {
                 var disponible = 1;
             } else {
                 disponible = 0;
@@ -122,15 +122,147 @@
                 },
                 error:function(e) {
                     alert(JSON.stringify(e));
+                }
+            });
+        }
+
+        function InsertarEquipo() {
+           
+            var config = $("#txtConfig").val();
+            var sofware = $("#txtSoftw").val()
+            var sistOper = $("#txtSisOp").val();
+            var servidores = $("txtServer").val();
+            var id_lab = $("#txtId").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Registrar_Equipo?config=" + config + "&software=" + software + "&sistOper=" + sistOper + "&servidores=" + servidores + "&id_lab=" + id_lab,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
+       
+        function ActualizarLab() {
+            if ($('#aire').prop("checked")) {
+                var aire = 1;
+            } else {
+                aire = 0;
             }
+            if ($('#video').prop("checked")) {
+                var video = 1;
+            } else {
+                video = 0;
+            }
+            if ($('#disponible').prop("checked")) {
+                var disponible = 1;
+            } else {
+                disponible = 0;
+            }
+            var id_lab = $("#txtId").val();
+            var cantCompu = $("#txtCant").val();
+            var piso = $("#txtPiso").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Actualizar_Laboratorio?id="+id+"&cantCompu="+cantCompu+"&piso="+piso+"&aire="+aire+"&videoBeam="+videoBeam+"&disponible="+disponible,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    alert("Actualizado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
+        function ActualizarEquipo() {
+
+            var config = $("#txtConfig").val();
+            var sofware = $("#txtSoftw").val()
+            var sistOper = $("#txtSisOp").val();
+            var servidores = $("txtServer").val();
+            var id_lab = $("#txtId").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Actualizar_Equipo?config="+config+"&software="+software+"&sistOper="+sistOper+"&servidores="+servidores+"&id_lab="+id_lab,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    //alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
+        function EliminarEquipo() {
+
+           
+            var id_lab = $("#txtId").val();
+            
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Eliminar_Equipo?id_lab="+id,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    //alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
+        function EliminarLaboratorio() {
+
+
+            var id_lab = $("#txtId").val();
+
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Eliminar_Laboratorio?id=" + id,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    //alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
             });
         }
 
         $(document).ready(function() {
             $("#botonInsertar").click(function() {
                 InsertarLab();
+                InsertarEquipo();
             })
         })
+
+        $(document).ready(function () {
+            $("#botonactualizar").click(function () {
+                ActualizarLab();
+                ActualizarEquipo();
+            })
+        })
+
+        $(document).ready(function () {
+            $("#botoneliminar").click(function () {
+                EliminarEquipo();
+                EliminarLaboratorio();
+            })
+        })
+
+        
+        
     </script>
     <form id="form1" runat="server">
     <div>
