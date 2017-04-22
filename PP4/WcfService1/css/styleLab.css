@@ -111,14 +111,12 @@ header h1 {
 .aula:hover{
 	display: block;
 	background-color:#A9BCF5;
-	background-image: url(add.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 .lab:hover{
 	display: block;
 	background-color:#A9BCF5;
-	background-image: url(update.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }

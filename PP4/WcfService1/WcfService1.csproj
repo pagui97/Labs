@@ -99,7 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asignacion.aspx" />
+    <Content Include="boleta.aspx" />
     <Content Include="Consultas.aspx" />
+    <Content Include="Cronograma.aspx" />
     <Content Include="index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="jquery-3.2.1.min.js" />
@@ -118,12 +120,26 @@
     <Compile Include="Asignacion.aspx.designer.cs">
       <DependentUpon>Asignacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="boleta.aspx.cs">
+      <DependentUpon>boleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="boleta.aspx.designer.cs">
+      <DependentUpon>boleta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Consultas.aspx.cs">
       <DependentUpon>Consultas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Consultas.aspx.designer.cs">
       <DependentUpon>Consultas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cronograma.aspx.cs">
+      <DependentUpon>Cronograma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cronograma.aspx.designer.cs">
+      <DependentUpon>Cronograma.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

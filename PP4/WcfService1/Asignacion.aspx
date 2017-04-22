@@ -37,17 +37,14 @@
             })
             $.ajax({
                 url: "http://localhost:51116/Service1.svc/JSON/Reporte_Solicitud_ID_Lab?id=" + id,
-                type: "POST",
+                type: "GET",
                 dataType: "JSON",
                 success: function (data) {
-                    var arreglo = [];
-                    arreglo = data;
-                    arreglo.map(function (item) {
-                        $("#cuerpoTabla").append("<tr><td>" + item.Cedula + "</td><td>" + item.Nombre +
-                            "</td><td>" + item.Apellido + "</td><td>" + item.ID_lab + "</td><td>" + item.cantidad + "</td><td>" + item.piso +
-                            "</td><td>" + item.fecha + "</td><td>" + item.hora_ini + "</td><td>" + item.hora_fin + "</td><td>" + item.curso_ID +
-                            "</td><td>" + item.id_solicitud + "</td> <tr>");
+                    alert(JSON.stringify(data));
+                    $.each(data, function(key,value) {
+                        $("#cuerpoTabla").append("<tr><td>" + value + "</td>")
                     })
+                    
                 },
                 error: function (e) {
                     alert(e.responseText);

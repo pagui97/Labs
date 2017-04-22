@@ -48,14 +48,14 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item blue">
-                            <a href="UsuariosMan.html">
+                            <a href="UsuariosMan.aspx">
 
                                 <p>Mantenimientos Usuarios</p>
                             </a>
                         </div>
                         
                         <div class="menu-item green">
-                           <a href="LabMan.html" >
+                           <a href="WebForm1.aspx" >
 
                                 <p>Mantenimientos Laboratorios</p>
                             </a>
@@ -78,14 +78,14 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item light-red">
-                            <a href="Consultas.html" data-toggle="modal">
+                            <a href="Consultas.aspx" data-toggle="modal">
 
                                 <p>Consultas</p>
                             </a>
                         </div>
                         
                         <div class="menu-item color">
-                            <a href="Asignacion.html" data-toggle="modal">
+                            <a href="Asignacion.aspx" data-toggle="modal">
 
                                 <p>Asignación</p>
                             </a>
