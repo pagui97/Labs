@@ -40,7 +40,7 @@ namespace WcfService1
         Laboratorio Buscar_Laboratorio_ID(int id);
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Buscar_Usuario_Cedula?cedula={cedula}")]
-        Usuario Buscar_Usuario_Cedula(string cedula)
+        Usuario Buscar_Usuario_Cedula(string cedula);
 
 
         [OperationContract]
