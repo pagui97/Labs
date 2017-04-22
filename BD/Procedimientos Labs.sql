@@ -121,51 +121,16 @@ as
 delete from equipo where id_equipo = @id
 
 
-
-
-create procedure Registrar_Curso
-@id_curso VARCHAR(5),
-@cedula VARCHAR(20),
-@nombre VARCHAR(20),
-@turno TINYINT
-as
-insert into curso (id_curso, cedula, nombre, turno)values(@id_curso, @cedula, @nombre, @turno);
-
-create procedure Actualizar_Curso
-@id_curso VARCHAR(5),
-@cedula VARCHAR(20),
-@nombre VARCHAR(20),
-@turno TINYINT
-as
-update curso set cedula= @cedula, nombre = @nombre, turno = @turno where id_curso = @id_curso;
-
-create procedure Buscar_Curso_ID
-@id varchar(5)
-as
-select u.nombre, u.apellido1, u.apellido2, c.cedula, c.nombre, c.turno from curso c inner join usuario u 
-on c.cedula = u.cedula  where c.id_curso = @id;
-
-create procedure Buscar_Curso_Cedula_Profesor
-@cedula varchar(20)
-as
-select u.nombre, u.apellido1, u.apellido2, c.cedula, c.nombre, c.turno from curso c inner join usuario u 
-on c.cedula = u.cedula  where c.cedula = @cedula;
-
-create procedure Eliminar_Curso
-@id_curso varchar(20)
-as
-delete from curso where id_curso = @id_curso;
-
 create procedure Registrar_Solicitud
 @id_lab INTEGER,
-@id_curso VARCHAR(5),
+@cedula VARCHAR(20),
 @fecha DATE,
 @hora_ini TIME,
 @hora_fin TIME,
 @activo BIT
 as
-insert into solicitud (id_lab, id_curso, fecha, hora_ini, hora_fin, activo)
-values(@id_lab, @id_curso, @fecha, @hora_ini, @hora_fin, @activo);
+insert into solicitud (id_lab, cedula, fecha, hora_ini, hora_fin, activo)
+values(@id_lab, @cedula, @fecha, @hora_ini, @hora_fin, @activo);
 
 
 create procedure Traer_ID_Labs
@@ -193,14 +158,12 @@ end
 create procedure Traer_Info_Solicitud
 @id_lab integer
 as
-select  u.nombre, u.apellido1, u.apellido2, s.id_curso, s.fecha, s.hora_ini, s.hora_fin, s.activo from solicitud s inner join curso l 
-on s.id_curso = l.id_curso inner join usuario u on l.cedula = u.cedula
+select  u.nombre, u.apellido1, u.apellido2, s.cedula, s.fecha, s.hora_ini, s.hora_fin, s.activo from solicitud s inner join usuario u on s.cedula = u.cedula
 where s.id_lab = @id_lab;
 
 create procedure Traer_solicitudes
 as
-select u.nombre, u.apellido1, u.apellido2, s.id_curso, s.fecha, s.hora_ini, s.hora_fin, s.activo from solicitud s inner join curso l 
-on s.id_curso = l.id_curso inner join usuario u on l.cedula = u.cedula
+select u.nombre, u.apellido1, u.apellido2, s.cedula, s.fecha, s.hora_ini, s.hora_fin, s.activo from solicitud s inner join usuario u on s.cedula = u.cedula
 
 create procedure Aprobar_Denegar
 @activo bit,
@@ -210,32 +173,31 @@ update Solicitud set activo = @activo where id_lab = @id_lab;
 
 create procedure Reporte_Solicitud_Laboratorio_General
 as
-select c.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin, s.id_curso,s.id_solic 
-from laboratorio l inner join solicitud s on l.id_lab = s.id_lab 
-inner join curso c on s.id_curso = c.id_curso inner join usuario u on u.cedula = c.cedula; 
+select s.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin,s.id_solic 
+from laboratorio l inner join solicitud s on l.id_lab = s.id_lab inner join usuario u on u.cedula = s.cedula; 
 
 
 
 create procedure Reporte_Solicitud_Cedula
 @cedula varchar(20)
 as
-select c.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin, s.id_curso,s.id_solic 
+select s.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin, s.id_solic 
 from laboratorio l inner join solicitud s on l.id_lab = s.id_lab 
-inner join curso c on s.id_curso = c.id_curso inner join usuario u on u.cedula = c.cedula
+inner join usuario u on u.cedula = s.cedula
 where u.cedula = @cedula;
 
 create procedure Reporte_Solicitud_ID_Lab
 @id_lab integer
 as
-select c.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin, s.id_curso,s.id_solic 
+select s.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin,s.id_solic 
 from laboratorio l inner join solicitud s on l.id_lab = s.id_lab 
-inner join curso c on s.id_curso = c.id_curso inner join usuario u on u.cedula = c.cedula
+inner join usuario u on u.cedula = s.cedula
 where l.id_lab = @id_lab;
 
 create procedure Reporte_solicitud_Fecha
 @fecha date
 as
-select c.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin, s.id_curso,s.id_solic 
+select s.cedula, u.nombre, u.apellido1, l.id_lab, l.cantCompu,l.piso, s.fecha, s.hora_ini, s.hora_fin, s.id_solic 
 from laboratorio l inner join solicitud s on l.id_lab = s.id_lab 
-inner join curso c on s.id_curso = c.id_curso inner join usuario u on u.cedula = c.cedula
+inner join usuario u on u.cedula = s.cedula
 where s.fecha = @fecha;

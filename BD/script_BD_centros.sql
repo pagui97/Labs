@@ -38,17 +38,11 @@ CREATE TABLE equipo(
 	,id_lab INTEGER FOREIGN KEY REFERENCES laboratorio(id_lab)
 );
 
-CREATE TABLE curso(
-	id_curso VARCHAR(5) PRIMARY KEY
-	,cedula VARCHAR(20) FOREIGN KEY REFERENCES usuario(cedula)
-	,nombre VARCHAR(20)
-	,turno TINYINT
-);
 
 CREATE TABLE solicitud(
 	id_solic INTEGER IDENTITY(1,1) PRIMARY KEY
 	,id_lab INTEGER FOREIGN KEY REFERENCES laboratorio(id_lab)
-	,id_curso VARCHAR(5) FOREIGN KEY REFERENCES curso(id_curso)
+	,cedula VARCHAR(20) FOREIGN KEY REFERENCES usuario(cedula)
 	,fecha DATE
 	,hora_ini TIME
 	,hora_fin TIME
