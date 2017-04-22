@@ -128,6 +128,27 @@ namespace BD
             return nuevo;
         }
 
+        public static Boolean validarLogIn(string username , string contrasena)
+        {
+            Conexion nueva = new Conexion();
+            SqlCommand cmd = new SqlCommand("select Count(*) from usuario where userName = '"+username+"' and contraseña = '"+contrasena+"'");
+            cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                cmd.Connection.Close();
+                return true;
+            }
+            else
+            {
+                cmd.Connection.Close();
+                return false;
+            }
+            
+        }
+
         #endregion
     }
 }
