@@ -16,7 +16,7 @@ namespace WcfService1
     
 
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Equipo?id={id}&config={config}&software={software}&sistOper={sistOper}&servidores={servidores}&id_lab={id_lab}")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Actualizar_Equipo?config={config}&software={software}&sistOper={sistOper}&servidores={servidores}&id_lab={id_lab}")]
         void Actualizar_Equipo( string config, string software, string sistOper, string servidores,int id_lab);
 
         [OperationContract]
@@ -32,8 +32,8 @@ namespace WcfService1
         
 
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Equipo?id={id}")]
-        Equipo Buscar_Equipo(int id);
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Equipo?id_lab={id_lab}")]
+        Equipo Buscar_Equipo(int id_lab);
 
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate = "Buscar_Laboratorio_ID?id={id}")]
@@ -44,8 +44,8 @@ namespace WcfService1
 
 
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate ="Eliminar_Equipo?id={id}")]
-        void Eliminar_Equipo(int id);
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json,UriTemplate ="Eliminar_Equipo?id_lab={id_lab}")]
+        void Eliminar_Equipo(int id_lab);
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Eliminar_Laboratorio?id={id}")]
         void Eliminar_Laboratorio(int id);

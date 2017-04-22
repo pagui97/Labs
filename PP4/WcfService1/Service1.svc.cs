@@ -20,7 +20,7 @@ namespace WcfService1
         {
             try
             {
-                Equipo.Actualizar_Equipo(config,software,sistOper,servidores,  id_lab);
+                Equipo.Actualizar_Equipo(config,software,sistOper,servidores,id_lab);
             }
             catch (Exception)
             {
@@ -58,11 +58,11 @@ namespace WcfService1
         }
        
        
-        public Equipo Buscar_Equipo(int id)
+        public Equipo Buscar_Equipo(int id_lab)
         {
             try
             {
-                return Equipo.Buscar_Equipo(id);
+                return Equipo.Buscar_Equipo(id_lab);
             }
             catch (Exception)
             {
@@ -96,11 +96,11 @@ namespace WcfService1
             }
         }
 
-        public void Eliminar_Equipo(int id)
+        public void Eliminar_Equipo(int id_lab)
         {
             try
             {
-                Equipo.Eliminar_Equipo(id);
+                Equipo.Eliminar_Equipo(id_lab);
             }
             catch (Exception)
             {
