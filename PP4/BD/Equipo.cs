@@ -9,7 +9,6 @@ namespace BD
 {
     public class Equipo
     {
-        public int id_equipo { get; set; }
         public string config { get; set; }
         public string software { get; set; }
         public string sistOper { get; set; }
@@ -39,7 +38,7 @@ namespace BD
 
         }
 
-        public static void Actualizar_Equipo( string config, string software, string sistOper, string servidores, int id_lab)
+        public static void Actualizar_Equipo(string config, string software, string sistOper, string servidores, int id_lab)
         {
             Conexion nueva = new Conexion();
             nueva.objconexion().Open();
@@ -71,14 +70,14 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id", nuevo.id_lab);
+            cmd.Parameters.AddWithValue(@"id_lab", nuevo.id_lab);
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
             
 
         }
 
-        public static Equipo Buscar_Equipo(int id_equipo)
+        public static Equipo Buscar_Equipo(int id_lab)
         {
             Conexion nueva = new Conexion();
             nueva.objconexion().Open();
@@ -86,11 +85,10 @@ namespace BD
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Connection = nueva.objconexion();
             cmd.Connection.Open();
-            cmd.Parameters.AddWithValue(@"id", id_equipo);
+            cmd.Parameters.AddWithValue(@"id_lab", id_lab);
             SqlDataReader reader;
             reader = cmd.ExecuteReader();
             Equipo nuevo = new Equipo();
-            nuevo.id_equipo = id_equipo;
             while (reader.Read())
             {
                 nuevo.config = reader["config"].ToString();
