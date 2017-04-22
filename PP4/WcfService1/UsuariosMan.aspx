@@ -151,6 +151,22 @@
             });
         }
 
+        function BuscarUsuario() {
+            var cedula = $("#txtCedula").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Buscar_Usuario?cedula=" + cedula + "&nombre=" + nombre + "&apellido1=" + apellido1 + "&apellido2=" + apellido2 + "&ocupacion=" + ocupacion + "&id_rol=" + rol + "&username=" + username + "&contraseña=" + contraseña,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
         $(document).ready(function() {
             $("#botonInsertar").click(function() {
                 InsertarUsuario();
