@@ -16,7 +16,7 @@ namespace WcfService1
     {
        
 
-        public void Actualizar_Equipo(string config, string software, string sistOper, string servidores,int id_lab)
+        public void Actualizar_Equipo(int id, string config, string software, string sistOper, string servidores,int id_lab)
         {
             try
             {
@@ -58,11 +58,11 @@ namespace WcfService1
         }
        
        
-        public Equipo Buscar_Equipo(int id_lab)
+        public Equipo Buscar_Equipo(int id)
         {
             try
             {
-                return Equipo.Buscar_Equipo(id_lab);
+                return Equipo.Buscar_Equipo(id);
             }
             catch (Exception)
             {
@@ -85,11 +85,11 @@ namespace WcfService1
 
        
 
-        public void Eliminar_Equipo(int id_lab)
+        public void Eliminar_Equipo(int id)
         {
             try
             {
-                Equipo.Eliminar_Equipo(id_lab);
+                Equipo.Eliminar_Equipo(id);
             }
             catch (Exception)
             {
@@ -139,11 +139,11 @@ namespace WcfService1
             }
         }
 
-        public void Registrar_Solicitud(int id_lab, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo)
+        public void Registrar_Solicitud(int id_lab, string id_curso, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo)
         {
             try
             {
-                Solicitud.Registrar_Solicitud(id_lab, fecha, hora_ini, hora_fin, activo);
+                Solicitud.Registrar_Solicitud(id_lab, id_curso, fecha, hora_ini, hora_fin, activo);
             }
             catch (Exception)
             {
