@@ -86,7 +86,7 @@
         </div>
         <div id="botones">
             <div class="boton"><input class="btnA" type="submit" id="botonInsertar" value="Insertar"/></div>
-            <div class="boton"><input class="btnE" type="submit" name="" value="Buscar"/></div>
+            <div class="boton"><input class="btnE" type="submit" id="botonBuscar" value="Buscar"/></div>
             <div class="boton"><input class="btnA" type="submit" id="botonActualizar" value="Actualizar"/></div>
         </div>
     </div>
@@ -113,8 +113,8 @@
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
-                success: function (data) {
-                    alert("Resgistrado con éxito")
+                success: function(data) {
+                    alert(data)
                 },
                 error:function(e) {
                     alert(JSON.stringify(e));
@@ -154,12 +154,17 @@
         function BuscarUsuario() {
             var cedula = $("#txtCedula").val();
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/Buscar_Usuario?cedula=" + cedula + "&nombre=" + nombre + "&apellido1=" + apellido1 + "&apellido2=" + apellido2 + "&ocupacion=" + ocupacion + "&id_rol=" + rol + "&username=" + username + "&contraseña=" + contraseña,
+                url: "http://localhost:51116/Service1.svc/JSON/Buscar_Usuario_Cedula?cedula=" + cedula,
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
-                    alert("Resgistrado con éxito")
+                    alert(JSON.stringify(data));
+                    var arreglo = [];
+                    arreglo = JSON.stringify(data);
+                    arreglo.map(function(item) {
+                        $("#txtNombre").val(item.nombre);
+                    })
                 },
                 error: function (e) {
                     alert(JSON.stringify(e));
@@ -173,6 +178,9 @@
             })
             $("#botonActualizar").click(function () {
                 ActualizarUsuario();
+            })
+            $("#botonBuscar").click(function () {
+                BuscarUsuario();
             })
         })
     </script>
