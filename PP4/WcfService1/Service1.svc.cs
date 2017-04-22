@@ -307,7 +307,7 @@ namespace WcfService1
                 throw;
             }
         }
-        public Boolean validarLogIn(string username, string contrasena)
+        public string validarLogIn(string username, string contrasena)
         {
             return Usuario.validarLogIn(username,contrasena);
         }

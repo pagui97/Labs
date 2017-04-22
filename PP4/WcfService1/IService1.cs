@@ -110,7 +110,7 @@ namespace WcfService1
 
         [OperationContract]
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "validarLogIn?username={username}&contrasena={contrasena}")]
-        Boolean validarLogIn(string username, string contrasena);
+        string validarLogIn(string username, string contrasena);
 
     }
 }

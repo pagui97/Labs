@@ -54,8 +54,14 @@
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
-                    if (data['validarLogInResult']==true) {
+                    if (data['validarLogInResult']=="Admin") {
                         window.location.href = "http://localhost:51116/index.aspx";
+                    } else {
+                        if (data['validarLogInResult'] == "Profesor") {
+                            window.location.href = "http://localhost:51116/Asignacion.aspx"
+                        } else {
+                            alert("El nombre de usuario o contraseña no coinciden")
+                        }
                     }
                     alert(data['validarLogInResult']);
                 },
