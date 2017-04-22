@@ -22,38 +22,6 @@
     <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
 </head>
 <body>
-    
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/programming.png" alt=""/>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="LabMan.html">Laboratorios</a>
-                    </li>
-                    <li>
-                        <a href="UsuariosMan.html">Usuarios</a>
-                    </li>
-                    <li>
-                        <a href="Asignacion.html">Asignación</a>
-                    </li>
-                    <li>
-                        <a href="Consultas.html">Consultas</a>
-                    </li>
-                    <li>
-                        <a href="Login.html">Salir</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div class="wrapper">
         <div id="content">
             <div class="lab">
@@ -61,7 +29,7 @@
                 <form>
                     <fieldset>
                         <label>Nombre de Usuario:</label><input class="txt" type="text" id="txtUsername"/>
-                        <label>Contrasena:</label><input class="txt" type="text" id="txtContrasena"/>
+                        <label>Contrasena:</label><input class="txt" type="password" id="txtContrasena"/>
                     </fieldset>
                 </form>
             </div>
@@ -81,11 +49,14 @@
             var contrasena = $("#txtContrasena").val();
             
             $.ajax({
-                url: "http://localhost:51116/Service1.svc/JSON/validarLogIn?username=" + username + "&contrasena=" ,
+                url: "http://localhost:51116/Service1.svc/JSON/validarLogIn?username=" + username + "&contrasena=" + contrasena,
                 type: "GET",
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
-                success: function(data) {
+                success: function (data) {
+                    if (data['validarLogInResult']==true) {
+                        window.location.href = "http://localhost:51116/index.aspx";
+                    }
                     alert(data['validarLogInResult']);
                 },
                 error:function(e) {
@@ -93,6 +64,11 @@
             }
             });
         }
+        $(document).ready(function() {
+            $("#botonLogIn").click(function() {
+                Login();
+            })
+        })
     </script>
 </body>
 </html>
