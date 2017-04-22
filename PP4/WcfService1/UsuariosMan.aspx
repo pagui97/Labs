@@ -87,7 +87,7 @@
         <div id="botones">
             <div class="boton"><input class="btnA" type="submit" id="botonInsertar" value="Insertar"/></div>
             <div class="boton"><input class="btnE" type="submit" name="" value="Buscar"/></div>
-            <div class="boton"><input class="btnA" type="submit" name="" value="Actualizar"/></div>
+            <div class="boton"><input class="btnA" type="submit" id="botonActualizar" value="Actualizar"/></div>
         </div>
     </div>
     <div class="clear"></div>
@@ -122,9 +122,41 @@
             });
         }
 
+        function ActualizarUsuario() {
+            if ($('#admi').is(':checked')) {
+                var rol = 1;
+            } else {
+                if ($('#prof').is(':checked')) {
+                    rol = 2;
+                }
+            }
+            var cedula = $("#txtCedula").val();
+            var nombre = $("#txtNombre").val();
+            var apellido1 = $("#txtApellido1").val();
+            var apellido2 = $("#txtApellido2").val();
+            var ocupacion = $("#txtOcupacion").val();
+            var username = $("#txtUsername").val();
+            var contraseña = $("#txtpassword").val();
+            $.ajax({
+                url: "http://localhost:51116/Service1.svc/JSON/Actualizar_Usuario?cedula=" + cedula + "&nombre=" + nombre + "&apellido1=" + apellido1 + "&apellido2=" + apellido2 + "&ocupacion=" + ocupacion + "&id_rol=" + rol + "&username=" + username + "&contraseña=" + contraseña,
+                type: "GET",
+                contentType: "application/json;charset= utf-8",
+                dataType: "JSON",
+                success: function (data) {
+                    alert("Resgistrado con éxito")
+                },
+                error: function (e) {
+                    alert(JSON.stringify(e));
+                }
+            });
+        }
+
         $(document).ready(function() {
             $("#botonInsertar").click(function() {
                 InsertarUsuario();
+            })
+            $("#botonActualizar").click(function () {
+                ActualizarUsuario();
             })
         })
     </script>
