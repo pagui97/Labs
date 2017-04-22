@@ -108,5 +108,9 @@ namespace WcfService1
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Traer_solicitudes?")]
         List<Reportes> Traer_solicitudes();
 
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "validarLogIn?username={username}&contrasena={contrasena}")]
+        Boolean validarLogIn(string username, string contrasena);
+
     }
 }
