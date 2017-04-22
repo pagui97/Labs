@@ -61,7 +61,7 @@ namespace WcfService1
         void Registrar_Laboratorio(int id_lab,int cantCompu, int piso, byte aire, byte videoBeam, byte disponible);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Registrar_Solicitud?id_lab={id_lab}&id_curso={id_curso}&fecha={fecha}&hora_ini={hora_ini}&hora_fin={hora_fin}&activo={activo}")]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Registrar_Solicitud?id_lab={id_lab}&cedula={cedula}&fecha={fecha}&hora_ini={hora_ini}&hora_fin={hora_fin}&activo={activo}")]
         void Registrar_Solicitud(int id_lab, string cedula, DateTime fecha, TimeSpan hora_ini, TimeSpan hora_fin, byte activo);
 
         [OperationContract]
