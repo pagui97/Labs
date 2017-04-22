@@ -68,18 +68,18 @@
                 error: function (e) {
                     alert(JSON.stringify(e));
                 }
-        });
-        
-            $(document).ready(function () {
-                $(".popup-link").click(function () {
-                    Reporte_Solicitud_id();
-                })
+            });
+            }
+        $(document).ready(function () {
+            $(".popup-link").click(function () {
+                Reporte_Solicitud_id();
+            })
                 
-                $("#boton").click(function () {
-                    aprobar();
-                }
+            $("#boton").click(function () {
+                aprobar();
+            })
 
-        }
+        });
        
 
     </script>
@@ -140,15 +140,15 @@
             </div>
             <div id="aulas2">
                 <div class="lab" id="fin">
-                    <a  href="#popup" class="popup-link">1204</a>
+                    <a  href="#popup" class="popup-link">1205</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="lab">
-                    <a  href="#popup" class="popup-link">1203</a>
+                    <a  href="#popup" class="popup-link">1204</a>
                     <img class="izq" src="images/door.png"/>
                 </div>
                 <div class="aula">
-                    <a>Escuela Ing. Informática</a>
+                    <a>1203</a>
                     <img class="dcha" src="images/door.png"/>
                 </div>
                 <div class="clear"></div>

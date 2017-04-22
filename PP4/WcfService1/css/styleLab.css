@@ -64,14 +64,14 @@ header h1 {
 .lab a,.aula a{
 	text-decoration: none;
 	color: black;
-    font-size: 10px;
+    font-size: 15px;
     float: left;
 }
 .lab,.aula {
 	display: inline;
 	text-align: center;
 	float: right;
-	width: 100px;
+	width: 130px;
 	border: 2px solid #b3b3ff;
 	margin: 40px 1px 40px 1px;
 	padding: 40px;
@@ -82,6 +82,7 @@ header h1 {
 #first{
 	width: 138px;
 	padding-bottom: 55px;
+	padding: 40px;
 }
 #fin{
 	margin-right: 20px;
