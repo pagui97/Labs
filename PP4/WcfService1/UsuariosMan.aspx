@@ -94,10 +94,10 @@
     <footer>Administración de Centros de Cómputo</footer>
     <script type="text/javascript">
         function InsertarUsuario() {
-            if ($('#admi').is(':checked')) {
+            if ($('#admi').prop("checked")) {
                 var rol = 1;
             } else {
-                if ($('#prof').is(':checked')) {
+                if ($('#prof').prop("checked")) {
                     rol = 2;
                 }
             }
@@ -123,10 +123,10 @@
         }
 
         function ActualizarUsuario() {
-            if ($('#admi').is(':checked')) {
+            if ($('#admi').prop("checked")) {
                 var rol = 1;
             } else {
-                if ($('#prof').is(':checked')) {
+                if ($('#prof').prop("checked")) {
                     rol = 2;
                 }
             }
@@ -159,12 +159,17 @@
                 contentType: "application/json;charset= utf-8",
                 dataType: "JSON",
                 success: function (data) {
-                    alert(JSON.stringify(data));
-                    var arreglo = [];
-                    arreglo = JSON.stringify(data);
-                    arreglo.map(function(item) {
-                        $("#txtNombre").val(item.nombre);
-                    })
+                    $("#txtNombre").val(data['nombre']);
+                    $("#txtApellido1").val(data['apellido1']);
+                    $("#txtApellido2").val(data['apellido2']);
+                    $("#txtOcupacion").val(data['ocupacion']);
+                    $("#txtUsername").val(data['userName']);
+                    $("#txtpassword").val(data['contraseña']);
+                    if (data["id_rol"] == 1) {
+                        $("#admi").prop("checked", "checked");
+                    } else {
+                        $("#prof").prop("checked", "checked");
+                    }
                 },
                 error: function (e) {
                     alert(JSON.stringify(e));
@@ -175,6 +180,15 @@
         $(document).ready(function() {
             $("#botonInsertar").click(function() {
                 InsertarUsuario();
+                $("#txtCedula").val("");
+                $("#txtNombre").val("");
+                $("#txtApellido1").val("");
+                $("#txtApellido2").val("");
+                $("#txtOcupacion").val("");
+                $("#txtUsername").val("");
+                $("#txtpassword").val("");
+                $("#admi").prop("checked", "");
+                $("#prof").prop("checked", "");
             })
             $("#botonActualizar").click(function () {
                 ActualizarUsuario();
