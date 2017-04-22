@@ -37,6 +37,19 @@ namespace BD
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
         }
+
+        public static void Aprobar_Denegar(byte activo,int id_lab)
+        {
+            Conexion nueva = new Conexion();
+            SqlCommand cmd = new SqlCommand("Aprobar_Denegar");
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Connection = nueva.objconexion();
+            cmd.Connection.Open();
+            cmd.Parameters.AddWithValue(@"activo", activo);
+            cmd.Parameters.AddWithValue(@"id_lab", id_lab);
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+        }
     }
 }
 

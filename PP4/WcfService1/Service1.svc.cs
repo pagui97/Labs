@@ -312,6 +312,11 @@ namespace WcfService1
             return Usuario.validarLogIn(username,contrasena);
         }
 
+        public void Aprobar_Denegar(byte activo, int id_lab)
+        {
+            Solicitud.Aprobar_Denegar(activo,id_lab);
+        }
+
 
 
 

@@ -112,5 +112,9 @@ namespace WcfService1
         [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "validarLogIn?username={username}&contrasena={contrasena}")]
         string validarLogIn(string username, string contrasena);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedResponse, ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "Aprobar_Denegar?activo={activo}&id_lab={id_lab}")]
+        void Aprobar_Denegar(byte activo, int id_lab);
+
     }
 }
